@@ -1,0 +1,1341 @@
+<meta charset="utf-8">
+<title>Monitor de Prontidão Civil</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Nível diário de prontidão civil e pressão de guerra no mundo e no Brasil, com justificativa e fontes abertas.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Monitor de Prontidão Civil">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Monitor de Prontidão Civil">
+<meta property="og:description" content="Nível diário de prontidão civil e pressão de guerra no mundo e no Brasil, com justificativa e fontes abertas.">
+<meta property="og:url" content="https://prontidao-civil.pages.dev/">
+<meta property="og:image" content="https://prontidao-civil.pages.dev/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Placa com o nível do dia do Monitor de Prontidão Civil e a pressão de guerra no mundo">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Monitor de Prontidão Civil">
+<meta name="twitter:image" content="https://prontidao-civil.pages.dev/og.jpg">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0d141b">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Prontidão">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..800&family=Public+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: placa de aviso no topo, mapa largo com busca, lista de locais, dois gráficos, método e fontes. Tudo numa coluna de 1180px. */
+:root {
+  --paper: #f2f4f6;
+  --panel: #ffffff;
+  --ink: #15212c;
+  --muted: #586776;
+  --line: #d3dae1;
+  --sea: #e3e9ee;
+  --land: #cbd3db;
+  --accent: #1d4f8a;
+  --verde: #2e8a57;
+  --amarelo: #dda115;
+  --vermelho: #c6372c;
+  --on-amarelo: #241a00;
+  --on-sinal: #ffffff;
+  --g-ativa: #7d1838;
+  --g-elevada: #c8622a;
+  --g-latente: #cdb57a;
+  --c-chuva: #2f6db5;
+  --c-seca: #a8642a;
+  --c-misto: #7b5ea7;
+  --c-normal: #8fa3a0;
+  --k-critico: #3b2a8f;
+  --k-grave: #6d5bd0;
+  --k-monitorar: #9aa7c7;
+  --font-display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Public Sans", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0d141b; --panel: #131d26; --ink: #e5ecf2; --muted: #93a2b1; --line: #26323e;
+    --sea: #0a1117; --land: #2a3644; --accent: #6fa8e8;
+    --verde: #45b578; --amarelo: #f0bb37; --vermelho: #ee5b4c; --on-amarelo: #241a00; --on-sinal: #0d141b;
+    --g-ativa: #d1456e; --g-elevada: #e8874f; --g-latente: #a8955f;
+    --c-chuva: #5b9be0; --c-seca: #d08a4a; --c-misto: #a68bd6; --c-normal: #5e7471;
+    --k-critico: #9d8cf5; --k-grave: #7466c4; --k-monitorar: #5d6b8a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0d141b; --panel: #131d26; --ink: #e5ecf2; --muted: #93a2b1; --line: #26323e;
+  --sea: #0a1117; --land: #2a3644; --accent: #6fa8e8;
+  --verde: #45b578; --amarelo: #f0bb37; --vermelho: #ee5b4c; --on-amarelo: #241a00; --on-sinal: #0d141b;
+  --g-ativa: #d1456e; --g-elevada: #e8874f; --g-latente: #a8955f;
+  --c-chuva: #5b9be0; --c-seca: #d08a4a; --c-misto: #a68bd6; --c-normal: #5e7471;
+    --k-critico: #9d8cf5; --k-grave: #7466c4; --k-monitorar: #5d6b8a;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.55; }
+a { color: var(--accent); text-underline-offset: 2px; }
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+h1, h2, h3 { font-family: var(--font-display); font-stretch: 75%; text-wrap: balance; margin: 0; line-height: 1.05; }
+h2 { font-size: clamp(24px, 3.2vw, 34px); font-weight: 800; }
+h3 { font-size: 20px; font-weight: 700; font-stretch: 85%; }
+section { padding-block: 40px; border-top: 1px solid var(--line); }
+section, #placard { scroll-margin-top: 64px; }
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--paper) 94%, transparent); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding-inline: max(16px, env(safe-area-inset-left, 0px)); }
+.nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.nav ul::-webkit-scrollbar { display: none; }
+.nav a { display: block; padding: 12px 10px 10px; font-family: var(--font-mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); text-decoration: none; white-space: nowrap; border-bottom: 2px solid transparent; }
+.nav a:hover { color: var(--ink); }
+.nav a[aria-current="true"] { color: var(--ink); border-bottom-color: var(--accent); }
+.nav a:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.nav .dot { display: inline-block; width: 7px; height: 7px; margin-right: 6px; background: var(--c, var(--land)); vertical-align: 1px; }
+.go-uf { all: unset; box-sizing: border-box; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 12px 14px; background: var(--ink); color: var(--paper); font-weight: 600; font-size: 14px; }
+.go-uf:hover { background: var(--accent); }
+.go-uf:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.sec-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; margin-bottom: 20px; }
+.sec-head p { margin: 0; color: var(--muted); max-width: 60ch; }
+
+/* Topo */
+.top { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-block: 18px; flex-wrap: wrap; }
+.top-r { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.install { cursor: pointer; }
+.ios-hint { flex-basis: 100%; margin: 0; font-size: 13px; color: var(--muted); }
+.brand { font-family: var(--font-display); font-stretch: 70%; font-weight: 800; font-size: 18px; letter-spacing: .02em; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
+.brand-mark { width: 22px; height: 22px; display: grid; grid-template-rows: repeat(3, 1fr); gap: 2px; }
+.brand-mark i { display: block; border-radius: 1px; }
+.brand-mark i:nth-child(1) { background: var(--vermelho); }
+.brand-mark i:nth-child(2) { background: var(--amarelo); }
+.brand-mark i:nth-child(3) { background: var(--verde); }
+
+/* Placa do dia */
+.placard { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 0; border: 1px solid var(--line); background: var(--panel); margin-block: 8px 40px; }
+.signal { padding: 28px; display: flex; flex-direction: column; gap: 14px; justify-content: space-between; background: var(--lvl); color: var(--lvl-on); position: relative; overflow: hidden; }
+.signal::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, transparent 0 18px, rgba(0,0,0,.06) 18px 36px); pointer-events: none; }
+.signal > * { position: relative; z-index: 1; }
+.signal .eyebrow { color: inherit; opacity: .8; }
+.signal-word { font-family: var(--font-display); font-stretch: 62%; font-weight: 800; font-size: clamp(64px, 11vw, 132px); line-height: .85; letter-spacing: -.01em; text-transform: uppercase; }
+.signal-sub { font-family: var(--font-mono); font-size: 13px; }
+.scale { display: flex; gap: 6px; }
+.scale span { flex: 1; height: 10px; border: 1.5px solid currentColor; opacity: .45; }
+.scale span.on { background: currentColor; opacity: 1; }
+.why { padding: 28px; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.why p { margin: 0; max-width: 62ch; }
+.why .lead { font-size: 18px; line-height: 1.5; }
+.why .br { padding-top: 14px; border-top: 1px dashed var(--line); color: var(--muted); }
+.why .br strong { color: var(--ink); }
+.tallies { display: flex; flex-wrap: wrap; gap: 8px 18px; font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+.tallies b { color: var(--ink); font-weight: 500; }
+
+/* Pílula de nível */
+.pill { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; padding: 2px 8px 2px 6px; border: 1px solid var(--line); background: var(--panel); white-space: nowrap; }
+.pill::before { content: ""; width: 8px; height: 8px; background: var(--c, var(--land)); }
+.pill.verde { --c: var(--verde); } .pill.amarelo { --c: var(--amarelo); } .pill.vermelho { --c: var(--vermelho); } .pill.semdado { --c: var(--land); }
+.pill.ativa { --c: var(--g-ativa); } .pill.elevada { --c: var(--g-elevada); } .pill.latente { --c: var(--g-latente); }
+.pill.g::before { border-radius: 50%; }
+.pill.critico { --c: var(--k-critico); } .pill.grave { --c: var(--k-grave); } .pill.monitorar { --c: var(--k-monitorar); }
+.pill.k::before { transform: rotate(45deg) scale(.85); }
+.pill.chuva { --c: var(--c-chuva); } .pill.seca { --c: var(--c-seca); } .pill.misto { --c: var(--c-misto); } .pill.normal { --c: var(--c-normal); }
+.map .uf { stroke: var(--paper); stroke-width: .8; vector-effect: non-scaling-stroke; cursor: pointer; }
+.map .uf.sel { stroke: var(--ink); stroke-width: 2.2; }
+.map .uf-lbl { font-family: var(--font-mono); font-size: 10px; fill: var(--paper); pointer-events: none; text-anchor: middle; }
+.map .vale { fill: none; stroke: var(--ink); stroke-width: 2; vector-effect: non-scaling-stroke; }
+.map .vale-lbl { font-family: var(--font-mono); font-size: 11px; fill: var(--ink); paint-order: stroke; stroke: var(--sea); stroke-width: 3px; }
+.tag.g-alerta { background: var(--vermelho); color: var(--on-sinal); border-color: transparent; } .tag.g-atencao { background: var(--amarelo); color: var(--on-amarelo); border-color: transparent; } .tag.g-informativo { border-color: var(--line); }
+.uf-modo { display: flex; gap: 4px; flex-wrap: wrap; }
+.news { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.news li { display: flex; flex-direction: column; gap: 4px; padding-top: 10px; border-top: 1px dashed var(--line); }
+.news .meta { display: flex; flex-wrap: wrap; gap: 4px 6px; align-items: center; }
+.news p { font-size: 13px; color: var(--muted); }
+.local { border: 1px solid var(--ink); padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; }
+.local ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; font-size: 13.5px; }
+.card.critico { --c: var(--k-critico); } .card.grave { --c: var(--k-grave); } .card.monitorar { --c: var(--k-monitorar); }
+.crit.critico { --c: var(--k-critico); } .crit.grave { --c: var(--k-grave); } .crit.monitorar { --c: var(--k-monitorar); }
+.card.ativa { --c: var(--g-ativa); } .card.elevada { --c: var(--g-elevada); } .card.latente { --c: var(--g-latente); }
+.crit.ativa { --c: var(--g-ativa); } .crit.elevada { --c: var(--g-elevada); } .crit.latente { --c: var(--g-latente); }
+.war-line { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding-top: 14px; border-top: 1px dashed var(--line); }
+.war-line strong { font-family: var(--font-display); font-stretch: 75%; font-size: 20px; text-transform: uppercase; letter-spacing: .02em; color: var(--g-ativa); }
+.war-line span { color: var(--muted); font-size: 14px; }
+.clima-line strong { color: var(--amarelo); }
+.clima-line a { color: var(--muted); font-size: 14px; }
+.ciber-line strong { color: var(--k-grave); }
+.ciber-line a { color: var(--muted); font-size: 14px; }
+.ciber-meta { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 13px; color: var(--muted); }
+.layers { display: inline-flex; border: 1px solid var(--ink); }
+.layers button { font: inherit; font-size: 13px; padding: 8px 12px; border: 0; background: var(--panel); color: var(--ink); cursor: pointer; }
+.layers button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.impact { font-size: 13.5px; padding: 8px 10px; background: var(--sea); }
+.card .impact { padding: 6px 8px; font-size: 12.5px; color: var(--ink); }
+.rule { margin-top: 16px; padding: 14px 16px; border: 1px solid var(--line); background: var(--panel); max-width: 90ch; }
+.tag { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .06em; padding: 1px 6px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+.tag.oficial { border-color: var(--accent); color: var(--accent); }
+.tag.novo { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+/* Mapa */
+.controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 14px; }
+.search { position: relative; flex: 1 1 260px; max-width: 380px; }
+.search input { width: 100%; font: inherit; padding: 10px 12px 10px 36px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); border-radius: 0; }
+.search svg { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; stroke: var(--muted); fill: none; }
+.suggest { position: absolute; left: 0; right: 0; top: calc(100% + 4px); background: var(--panel); border: 1px solid var(--line); list-style: none; margin: 0; padding: 4px 0; z-index: 20; max-height: 260px; overflow-y: auto; box-shadow: 0 8px 24px rgba(0,0,0,.12); }
+.suggest li button { all: unset; box-sizing: border-box; width: 100%; padding: 7px 12px; display: flex; justify-content: space-between; gap: 10px; cursor: pointer; }
+.suggest li button:hover, .suggest li button.hl { background: var(--sea); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font: inherit; font-size: 13px; padding: 8px 12px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); cursor: pointer; display: inline-flex; align-items: center; gap: 7px; border-radius: 0; }
+.chip i { width: 9px; height: 9px; background: var(--c, var(--ink)); display: inline-block; }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.chip.reset { border-style: dashed; }
+.chips.periodo { align-items: center; }
+.chips.periodo .eyebrow { margin-right: 4px; }
+.mapbox { display: grid; grid-template-columns: minmax(0, 1fr) 320px; border: 1px solid var(--line); background: var(--panel); }
+.map { position: relative; background: var(--sea); overflow: hidden; min-width: 0; }
+.map svg { display: block; width: 100%; height: auto; }
+.map .country { stroke: var(--paper); stroke-width: .6; vector-effect: non-scaling-stroke; cursor: pointer; }
+.map .country.sel { stroke: var(--ink); stroke-width: 2; }
+.map .grat { fill: none; stroke: var(--line); stroke-width: .5; vector-effect: non-scaling-stroke; opacity: .7; }
+.ring { fill: none; stroke-width: 1.5; vector-effect: non-scaling-stroke; transform-box: fill-box; transform-origin: center; animation: ring 2.4s ease-out infinite; }
+@keyframes ring { from { transform: scale(.4); opacity: .9; } to { transform: scale(2.6); opacity: 0; } }
+.scan { position: absolute; top: 0; bottom: 0; left: 0; width: 2px; background: var(--accent); box-shadow: 0 0 18px 4px color-mix(in srgb, var(--accent) 45%, transparent); opacity: 0; pointer-events: none; }
+.scan.run { animation: scan .9s cubic-bezier(.4,.0,.2,1) forwards; }
+@keyframes scan { 0% { opacity: .9; transform: translateX(0); } 90% { opacity: .9; } 100% { opacity: 0; transform: translateX(var(--w)); } }
+.map-legend { position: absolute; left: 10px; bottom: 10px; display: flex; flex-wrap: wrap; gap: 4px 10px; background: color-mix(in srgb, var(--panel) 88%, transparent); padding: 6px 8px; font-size: 12px; font-family: var(--font-mono); }
+.map-legend span { display: inline-flex; align-items: center; gap: 5px; }
+.map-legend i { width: 10px; height: 10px; display: inline-block; }
+.map-reset { position: absolute; right: 10px; top: 10px; z-index: 4; }
+.map-back { position: absolute; left: 10px; top: 10px; z-index: 4; cursor: pointer; background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.map-title { position: absolute; left: 10px; top: 50px; z-index: 3; font-family: var(--font-display); font-stretch: 75%; font-weight: 800; font-size: 22px; text-transform: uppercase; letter-spacing: .02em; pointer-events: none; text-shadow: 0 1px 0 var(--sea); }
+.map svg.br { display: none; }
+.map.brasil svg.world, .map.brasil .scan { display: none; }
+.map.brasil svg.br { display: block; height: min(74vh, 660px); }
+.map .uf { transition: opacity .35s; }
+.map .uf.dim { opacity: .35; }
+.sheet-close { all: unset; box-sizing: border-box; cursor: pointer; position: sticky; top: -20px; margin: -20px -20px 0; padding: 12px 20px; background: var(--panel); border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; z-index: 2; }
+.sheet-close::before { content: ""; position: absolute; left: 50%; top: 5px; width: 40px; height: 4px; margin-left: -20px; border-radius: 2px; background: var(--line); }
+@keyframes sheet { from { transform: translateY(100%); } to { transform: none; } }
+.tip { position: absolute; pointer-events: none; background: var(--ink); color: var(--paper); font-size: 12.5px; padding: 5px 8px; white-space: nowrap; transform: translate(-50%, calc(-100% - 10px)); opacity: 0; transition: opacity .12s; z-index: 5; }
+.detail { border-left: 1px solid var(--line); padding: 20px; display: flex; flex-direction: column; gap: 12px; min-width: 0; max-height: 640px; overflow-y: auto; }
+.detail .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.detail p { margin: 0; }
+.detail .days { font-family: var(--font-display); font-stretch: 70%; font-weight: 800; font-size: 40px; line-height: 1; }
+.detail .days small { font-family: var(--font-mono); font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 6px; letter-spacing: 0; }
+.events { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.events li { padding-top: 10px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px; }
+.events .meta { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; font-size: 12px; color: var(--muted); }
+.detail.swap { animation: swap .35s ease-out; }
+@keyframes swap { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* Lista de locais */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; }
+.card { all: unset; box-sizing: border-box; cursor: pointer; background: var(--panel); border: 1px solid var(--line); padding: 14px 16px 14px 20px; display: flex; flex-direction: column; gap: 6px; position: relative; min-width: 0; }
+.card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--c, var(--land)); }
+.card.verde { --c: var(--verde); } .card.amarelo { --c: var(--amarelo); } .card.vermelho { --c: var(--vermelho); }
+.card:hover { border-color: var(--ink); }
+.card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.card .row { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.card .nm { font-family: var(--font-display); font-stretch: 80%; font-weight: 700; font-size: 19px; }
+.card .d { font-family: var(--font-mono); font-size: 12px; color: var(--muted); white-space: nowrap; }
+.card p { margin: 0; font-size: 13.5px; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.empty { color: var(--muted); padding: 16px; border: 1px dashed var(--line); }
+
+/* Gráficos */
+.charts { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 16px; }
+.chart { background: var(--panel); border: 1px solid var(--line); padding: 18px; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+.chart p.note { margin: 0; font-size: 13px; color: var(--muted); }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart text { fill: var(--muted); font-family: var(--font-mono); font-size: 11px; }
+.chart .lbl { fill: var(--ink); font-family: var(--font-body); font-size: 12.5px; }
+.chart .gridl { stroke: var(--line); stroke-width: 1; }
+.chart .bar { fill: var(--accent); }
+.chart .bar-ideal { fill: var(--accent); opacity: .3; }
+.chart .val { fill: var(--ink); font-weight: 500; }
+
+/* Método e fontes */
+.method { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.crit { background: var(--panel); border: 1px solid var(--line); border-top: 5px solid var(--c); padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+.crit.verde { --c: var(--verde); } .crit.amarelo { --c: var(--amarelo); } .crit.vermelho { --c: var(--vermelho); }
+.crit p { margin: 0; font-size: 14px; }
+.notes { margin-top: 20px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 32px; }
+.notes p { margin: 0; max-width: 62ch; }
+.quiet { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+.quiet li { padding-left: 16px; position: relative; max-width: 80ch; }
+.quiet li::before { content: ""; position: absolute; left: 0; top: .7em; width: 7px; height: 7px; background: var(--verde); }
+.tablewrap { overflow-x: auto; border: 1px solid var(--line); background: var(--panel); }
+table { border-collapse: collapse; width: 100%; min-width: 720px; font-size: 13.5px; }
+th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--font-mono); font-weight: 500; font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); background: var(--paper); }
+tr:last-child td { border-bottom: 0; }
+footer { padding-block: 28px 48px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+
+@media (max-width: 900px) {
+  .placard { grid-template-columns: minmax(0, 1fr); }
+  .top { padding-block: 12px; }
+  #uf-legend, #legend { position: static; background: none; padding: 8px 10px; }
+  .nav a { padding: 11px 9px 9px; font-size: 11.5px; }
+  .mapbox { grid-template-columns: minmax(0, 1fr); }
+  .detail { border-left: 0; border-top: 1px solid var(--line); max-height: none; }
+  .detail.sheet { position: fixed; left: 0; right: 0; bottom: 0; max-height: 52vh; z-index: 40; background: var(--panel); border-top: 1px solid var(--line); box-shadow: 0 -14px 40px rgba(0,0,0,.4); padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px)); animation: sheet .32s ease-out; }
+  .map-title { font-size: 18px; top: 48px; }
+  .map.brasil svg.br { height: auto; }
+  .charts, .method, .notes { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ring, .scan.run, .detail.swap { animation: none; }
+  .ring { opacity: .6; }
+}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>Monitor de Prontidão Civil</div>
+    <div class="top-r">
+      <div class="eyebrow">Atualizado em <span id="upd" class="mono">—</span><span id="offline" hidden> · sem internet, dados salvos</span></div>
+      <button class="chip install" id="install" type="button" hidden>Instalar app</button>
+    </div>
+    <p class="ios-hint" id="ios-hint" hidden>Para instalar no iPhone: toque em Compartilhar e depois em “Adicionar à Tela de Início”.</p>
+  </header>
+  <nav class="nav" aria-label="Seções">
+    <ul id="nav">
+      <li><a href="#placard"><span class="dot" id="nav-dot"></span>Hoje</a></li>
+      <li><a href="#mapa">Mapa</a></li>
+      <li><a href="#locais">Locais</a></li>
+      <li><a href="#guerra">Guerra</a></li>
+      <li><a href="#ciber">Ciber</a></li>
+      <li><a href="#clima">El Niño</a></li>
+      <li><a href="#brasil" data-br>Brasil</a></li>
+      <li><a href="#graficos">Números</a></li>
+      <li><a href="#calmo">Sem novidade</a></li>
+      <li><a href="#metodo">Método</a></li>
+      <li><a href="#fontes">Fontes</a></li>
+    </ul>
+  </nav>
+
+  <div class="placard" id="placard">
+    <div class="signal" id="signal">
+      <div class="eyebrow">Nível do dia</div>
+      <div>
+        <div class="signal-word" id="sig-word">—</div>
+        <div class="signal-sub" id="sig-sub">carregando</div>
+      </div>
+      <div class="scale" aria-hidden="true"><span data-l="verde"></span><span data-l="amarelo"></span><span data-l="vermelho"></span></div>
+    </div>
+    <div class="why">
+      <div class="eyebrow">Por que este nível</div>
+      <p class="lead" id="why">—</p>
+      <p class="br"><strong>Brasil:</strong> <span id="why-br">—</span></p>
+      <div class="war-line"><span class="eyebrow">Pressão de guerra no mundo</span><strong id="war-word">—</strong><span id="war-sub">—</span></div>
+      <div class="war-line clima-line" id="clima-line" hidden><span class="eyebrow">Clima</span><strong id="clima-word">—</strong><a href="#clima" id="clima-sub">—</a></div>
+      <div class="war-line ciber-line" id="ciber-line" hidden><span class="eyebrow">Ataques cibernéticos</span><strong id="ciber-word">—</strong><a href="#ciber" id="ciber-sub">—</a></div>
+      <div class="tallies" id="tallies"></div>
+    </div>
+  </div>
+
+  <section id="mapa" aria-labelledby="h-mapa">
+    <div class="sec-head">
+      <h2 id="h-mapa">Onde há orientação ou ocorrência</h2>
+      <p>Busque um país ou filtre por nível e por período da notícia. Cada local mostra o que o governo pede, o que mudou e de onde veio a informação.</p>
+    </div>
+    <div class="controls">
+      <div class="search">
+        <svg viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+        <label for="q" class="eyebrow" style="position:absolute;left:-9999px">Buscar local</label>
+        <input id="q" type="search" placeholder="Buscar país (ex.: Japão, Brasil)" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="suggest">
+        <ul class="suggest" id="suggest" role="listbox" hidden></ul>
+      </div>
+      <div class="layers" role="group" aria-label="Camada do mapa">
+        <button data-camada="estoque" aria-pressed="true">Estoque doméstico</button>
+        <button data-camada="guerra" aria-pressed="false">Pressão de guerra</button>
+        <button data-camada="clima" aria-pressed="false" id="btn-clima">Clima (El Niño)</button>
+        <button data-camada="ciber" aria-pressed="false" id="btn-ciber">Ataques hacker</button>
+      </div>
+      <div class="chips" id="chips" role="group" aria-label="Filtrar por nível"></div>
+      <div class="chips periodo" id="periodo" role="group" aria-label="Filtrar por data da notícia"></div>
+      <div class="uf-modo" id="uf-modo" role="group" aria-label="Cor do mapa do Brasil" hidden>
+        <button class="chip" data-modo="previsao" aria-pressed="true">Previsão do El Niño</button>
+        <button class="chip" data-modo="noticias" aria-pressed="false">Notícias por gravidade</button>
+      </div>
+    </div>
+    <div class="mapbox">
+      <div class="map" id="map">
+        <div class="scan" id="scan"></div>
+        <div class="tip" id="tip"></div>
+        <button class="chip reset map-reset" id="reset" hidden>Ver o mundo todo</button>
+        <button class="chip map-back" id="back-world" type="button" hidden>← Voltar ao globo</button>
+        <div class="map-title" id="map-title" hidden>Brasil · nov a jan</div>
+        <div class="map-legend" id="legend" aria-hidden="true"></div>
+      </div>
+      <aside class="detail" id="detail" aria-live="polite"></aside>
+    </div>
+  </section>
+
+  <section id="locais" aria-labelledby="h-locais">
+    <div class="sec-head">
+      <h2 id="h-locais">Locais acompanhados</h2>
+      <p id="locais-count">—</p>
+    </div>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <section id="guerra" aria-labelledby="h-guerra">
+    <div class="sec-head">
+      <h2 id="h-guerra">Pressão de guerra</h2>
+      <p>Conflitos que explicam por que os governos pedem estoque, e o que cada um pode fazer chegar até o Brasil.</p>
+    </div>
+    <div class="cards" id="war-cards"></div>
+    <p class="rule" id="war-rule">—</p>
+  </section>
+
+  <section id="ciber" aria-labelledby="h-ciber">
+    <div class="sec-head">
+      <h2 id="h-ciber">Ataques cibernéticos</h2>
+      <p id="ciber-lead">Ataques hacker relevantes pelo mundo, do mais grave ao menos grave, e o que cada um pode fazer chegar até o Brasil.</p>
+    </div>
+    <div class="cards" id="ciber-cards"></div>
+    <div class="method" id="crit-k" style="margin-top:16px"></div>
+    <p class="rule" id="ciber-rule">—</p>
+  </section>
+
+  <section id="clima" aria-labelledby="h-clima">
+    <div class="sec-head">
+      <h2 id="h-clima">Clima: El Niño</h2>
+      <p>Fenômenos climáticos que podem trazer enchente, seca ou calor extremo ao Brasil, com a classificação oficial de intensidade.</p>
+    </div>
+    <div class="cards" id="clima-cards"></div>
+    <button class="go-uf" id="open-br" type="button" style="margin-top:20px;width:100%"><span>Abrir o Brasil por estado no mapa: previsão e notícias de cada estado</span><span class="mono">→</span></button>
+    <div class="method" id="crit-c" style="margin-top:16px"></div>
+    <p class="rule" id="clima-rule">—</p>
+  </section>
+
+  <section id="graficos" aria-labelledby="h-graf">
+    <div class="sec-head">
+      <h2 id="h-graf">Números</h2>
+      <p>Quanto tempo cada governo pede que a casa aguente sozinha, e como o nível do dia variou.</p>
+    </div>
+    <div class="charts">
+      <div class="chart">
+        <h3>Dias de autonomia pedidos à população</h3>
+        <p class="note">Barra cheia: mínimo pedido. Barra clara: prazo recomendado quando é maior. Países sem prazo definido ficam de fora.</p>
+        <div id="bars"></div>
+      </div>
+      <div class="chart">
+        <h3>Nível do dia, últimos 30 dias</h3>
+        <p class="note" id="hist-note">—</p>
+        <div id="hist"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="calmo" aria-labelledby="h-calmo">
+    <div class="sec-head">
+      <h2 id="h-calmo">Verificado, sem novidade</h2>
+      <p>O que o monitor procurou e não achou de novo. Ausência de notícia também é informação.</p>
+    </div>
+    <ul class="quiet" id="quiet"></ul>
+  </section>
+
+  <section id="metodo" aria-labelledby="h-metodo">
+    <div class="sec-head">
+      <h2 id="h-metodo">Como o nível é decidido</h2>
+      <p>Os critérios são fixos e públicos. Na dúvida, o monitor fica no nível mais baixo: manchete alarmista não sobe nível.</p>
+    </div>
+    <div class="method" id="crit"></div>
+    <h3 style="margin-top:24px;margin-bottom:12px">Pressão de guerra, por conflito</h3>
+    <div class="method" id="crit-g"></div>
+    <div class="notes">
+      <p><strong>Rotina.</strong> Uma vez por dia o monitor busca notícias das últimas 24 a 48 horas sobre orientações de estoque doméstico, defesa civil, sabotagem de infraestrutura, apagões e abastecimento no Brasil. Abre a fonte primária quando a notícia é relevante e compara com o que já foi registrado.</p>
+      <p><strong>Oficial ou imprensa.</strong> Cada fonte é marcada. <span class="tag oficial">oficial</span> é site de governo ou agência. <span class="tag">imprensa</span> é jornal ou portal; quando só existe imprensa, o fato vale como indício, não como confirmação.</p>
+      <p><strong>O que isto não é.</strong> Não é alerta oficial nem previsão. Orientações de estoque são de longo prazo e existem desde 2022. Em emergência real, siga a Defesa Civil (199) e o alerta por SMS (CEP para 40199).</p>
+      <p><strong>Limites.</strong> A busca é automatizada e pode perder notícias, sobretudo em idiomas locais. Um país sem cor no mapa não está seguro nem em risco: só não tem registro aqui.</p>
+    </div>
+  </section>
+
+  <section id="fontes" aria-labelledby="h-fontes">
+    <div class="sec-head">
+      <h2 id="h-fontes">Todas as fontes</h2>
+      <p id="fontes-count">—</p>
+    </div>
+    <div class="tablewrap">
+      <table id="src">
+        <thead><tr><th>Data</th><th>Local</th><th>O que diz</th><th>Fonte</th><th>Tipo</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <span>Monitor de Prontidão Civil · dados em <a href="data.json">data.json</a>, abertos para conferência</span>
+    <span>Clima e tempo no Brasil: <a href="https://www.gov.br/cemaden/pt-br" target="_blank" rel="noopener">Cemaden</a> · <a href="https://clima.cptec.inpe.br" target="_blank" rel="noopener">CPTEC/INPE</a> · <a href="https://www.ipmetradar.com.br" target="_blank" rel="noopener">IPMet (Unesp)</a> · <a href="https://portal.inmet.gov.br" target="_blank" rel="noopener">Inmet</a></span>
+    <span>Panorama de conflitos para conferência: <a href="https://cfr.org/global-conflict-tracker" target="_blank" rel="noopener">CFR Global Conflict Tracker</a> · <a href="https://acleddata.com/series/conflict-watchlist-2026" target="_blank" rel="noopener">ACLED Watchlist 2026</a> · Contornos: Natural Earth via world-atlas</span>
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+<script>
+(function () {
+  const RANK = { vermelho: 3, amarelo: 2, verde: 1 };
+  const NOME = { verde: "Verde", amarelo: "Amarelo", vermelho: "Vermelho", semdado: "Sem registro", ativa: "Guerra ativa", elevada: "Tensão elevada", latente: "Tensão latente", chuva: "Mais chuva", seca: "Mais seca", misto: "Chuva e seca", normal: "Perto da média", critico: "Crítico", grave: "Grave", monitorar: "Monitorar" };
+  const CRANK = { misto: 3, chuva: 2, seca: 1, normal: .5 };
+  const cvar = l => KRANK[l] ? `var(--k-${l})` : GRANK[l] ? `var(--g-${l})` : CRANK[l] ? `var(--c-${l})` : `var(--${l})`;
+  const GRANK = { ativa: 3, elevada: 2, latente: 1 };
+  const KRANK = { critico: 3, grave: 2, monitorar: 1 };
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const lvlVar = l => l ? `var(--${l})` : "var(--land)";
+  const lvlColor = l => css(!l ? "--land" : KRANK[l] ? `--k-${l}` : GRANK[l] ? `--g-${l}` : CRANK[l] ? `--c-${l}` : `--${l}`);
+  const norm = s => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  const fmt = d => /^\d{4}-\d{2}-\d{2}$/.test(d) ? d.split("-").reverse().join("/") : d;
+  const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
+
+  // Nomes em português dos países do atlas que aparecem na busca sem dado próprio.
+  const PT = { "Italy":"Itália","Poland":"Polônia","Denmark":"Dinamarca","Belgium":"Bélgica","Ireland":"Irlanda","Switzerland":"Suíça","Austria":"Áustria","Estonia":"Estônia","Latvia":"Letônia","Lithuania":"Lituânia","Russia":"Rússia","Ukraine":"Ucrânia","China":"China","India":"Índia","Australia":"Austrália","Argentina":"Argentina","Chile":"Chile","Colombia":"Colômbia","Peru":"Peru","Uruguay":"Uruguai","Paraguay":"Paraguai","Bolivia":"Bolívia","Venezuela":"Venezuela","South Korea":"Coreia do Sul","North Korea":"Coreia do Norte","Taiwan":"Taiwan","Israel":"Israel","Iran":"Irã","Turkey":"Turquia","Greece":"Grécia","Czechia":"Tchéquia","Romania":"Romênia","Hungary":"Hungria","Iceland":"Islândia","New Zealand":"Nova Zelândia","South Africa":"África do Sul","Egypt":"Egito","Saudi Arabia":"Arábia Saudita","Philippines":"Filipinas","Indonesia":"Indonésia" };
+
+  Promise.all([d3.json("data.json"), d3.json("geo/countries-110m.json")]).then(([data, world]) => {
+    const byId = new Map(data.locais.map(l => [l.id, l]));
+    const features = topojson.feature(world, world.objects.countries).features
+      .filter(f => f.properties.name !== "Antarctica");
+    features.forEach(f => {
+      const loc = byId.get(f.id);
+      f.loc = loc || null;
+      f.nome = loc ? loc.nome : (PT[f.properties.name] || f.properties.name);
+    });
+    const guerras = data.guerra || [];
+    const warById = new Map();
+    guerras.forEach(t => t.paises.forEach(p => { if (!warById.has(p)) warById.set(p, t); }));
+    features.forEach(f => { f.war = warById.get(f.id) || null; });
+    // Efeito típico do fenômeno climático em cada país (primeiro fenômeno de "clima").
+    const fen = (data.clima || [])[0] || null;
+    const climaById = new Map();
+    if (fen) (fen.regioes || []).forEach(rg => rg.paises.forEach(p => climaById.set(p, rg)));
+    features.forEach(f => { f.clima = climaById.get(f.id) || null; });
+    // Ataques cibernéticos: cada país mostra o ataque mais grave registrado nele.
+    const ciberes = (data.ciber || []).slice().sort((a, b) => KRANK[b.nivel] - KRANK[a.nivel] || b.data.localeCompare(a.data));
+    const ciberById = new Map();
+    ciberes.forEach(k => k.paises.forEach(p => { if (!ciberById.has(p)) ciberById.set(p, k); }));
+    features.forEach(f => { f.cib = ciberById.get(f.id) || null; });
+    const today = data.dias[data.dias.length - 1];
+    let modoBr = false, filtro = "todos", filtroG = "todos", filtroC = "todos", filtroK = "todos", camada = "estoque", selecionado = null;
+    // Filtro por data: mostra só o que teve notícia no período escolhido (0 = tudo). A escolha fica salva neste navegador.
+    let periodo = 0;
+    try { periodo = +localStorage.getItem("periodo") || 0; } catch (e) {}
+    const PERIODOS = [[0, "Tudo"], [1, "Hoje"], [7, "7 dias"], [30, "30 dias"], [90, "90 dias"]];
+    if (!PERIODOS.some(([n]) => n === periodo)) periodo = 0;
+    const corte = () => { const d = new Date(data.atualizado + "T12:00:00"); d.setDate(d.getDate() - (periodo - 1)); return d.toISOString().slice(0, 10); };
+    const noPeriodo = s => !periodo || (/^\d{4}-\d{2}-\d{2}$/.test(s || "") && s >= corte());
+    const recente = x => !periodo || (x.eventos || []).some(e => noPeriodo(e.data)) || (!!x.data && noPeriodo(x.data));
+    const PNOME = () => periodo === 1 ? "hoje" : `nos últimos ${periodo} dias`;
+    // Cada país mostra o ataque mais grave dentro do período.
+    function mapearCiber() { features.forEach(f => { f.cib = ciberes.find(k => k.paises.includes(f.id) && recente(k)) || null; }); }
+    mapearCiber();
+    const nivelDe = d => camada === "estoque" ? (d.loc && d.loc.nivel) : camada === "guerra" ? (d.war && d.war.nivel) : camada === "ciber" ? (d.cib && d.cib.nivel) : (d.clima && d.clima.efeito);
+
+    // Placa do dia
+    document.getElementById("upd").textContent = fmt(data.atualizado) + (data.hora ? " às " + data.hora : "");
+    const sig = document.getElementById("signal");
+    sig.style.setProperty("--lvl", lvlVar(today.nivel));
+    sig.style.setProperty("--lvl-on", today.nivel === "amarelo" ? "var(--on-amarelo)" : "var(--on-sinal)");
+    document.getElementById("sig-word").textContent = NOME[today.nivel];
+    document.getElementById("sig-sub").textContent = `${fmt(today.data)}${today.intensidade ? " · intensidade " + today.intensidade : ""}`;
+    sig.querySelectorAll(".scale span").forEach(s => s.classList.toggle("on", RANK[s.dataset.l] <= RANK[today.nivel]));
+    document.getElementById("why").textContent = today.motivo;
+    document.getElementById("why-br").textContent = today.brasil;
+    const all = data.locais.concat(data.blocos.map(b => Object.assign({ id: "bloco-" + norm(b.nome).replace(/\W+/g, "-"), bloco: true }, b)));
+    const tal = document.getElementById("tallies");
+    ["vermelho", "amarelo", "verde"].forEach(l => {
+      const n = all.filter(x => x.nivel === l).length;
+      const s = el("span"); const b = el("b", null, String(n)); s.append(b, ` ${n === 1 ? "local" : "locais"} ${NOME[l].toLowerCase()}`); tal.append(s);
+    });
+    const nf = all.concat(guerras, data.clima || [], ciberes).reduce((a, x) => a + x.eventos.length, 0);
+    const PRESS = { alta: "Alta", media: "Média", baixa: "Baixa" };
+    document.getElementById("war-word").textContent = PRESS[today.guerra] || "—";
+    const ativas = guerras.filter(t => t.nivel === "ativa"), elev = guerras.filter(t => t.nivel === "elevada");
+    document.getElementById("war-sub").textContent =
+      `${ativas.length} ${ativas.length === 1 ? "guerra ativa" : "guerras ativas"} (${ativas.map(t => t.nome).join("; ")}) · ${elev.length} ${elev.length === 1 ? "tensão elevada" : "tensões elevadas"}`;
+    const c0 = (data.clima || [])[0];
+    if (c0) {
+      document.getElementById("clima-line").hidden = false;
+      document.getElementById("clima-word").textContent = c0.nome.replace(/ \d{4}.*$/, "") + " " + c0.classificacao;
+      document.getElementById("clima-sub").textContent = (c0.pico ? "pico " + c0.pico + " · " : "") + "ver efeitos no Brasil";
+    }
+    if (ciberes.length) {
+      document.getElementById("ciber-line").hidden = false;
+      document.getElementById("ciber-word").textContent = PRESS[today.ciber] || "—";
+      const nk = l => ciberes.filter(k => k.nivel === l).length;
+      document.getElementById("ciber-sub").textContent = `${nk("critico")} ${nk("critico") === 1 ? "ataque crítico" : "ataques críticos"} · ${nk("grave")} ${nk("grave") === 1 ? "grave" : "graves"} · ver todos`;
+    }
+    const sf = el("span"); sf.append(el("b", null, String(nf)), " fontes citadas"); tal.append(sf);
+
+    // App instalável: registra o service worker e oferece o botão quando o navegador permitir.
+    if ("serviceWorker" in navigator && location.protocol === "https:") navigator.serviceWorker.register("sw.js").catch(() => {});
+    const instBtn = document.getElementById("install");
+    let pedido = null;
+    window.addEventListener("beforeinstallprompt", ev => { ev.preventDefault(); pedido = ev; instBtn.hidden = false; });
+    instBtn.addEventListener("click", async () => { if (!pedido) return; pedido.prompt(); await pedido.userChoice; pedido = null; instBtn.hidden = true; });
+    window.addEventListener("appinstalled", () => { instBtn.hidden = true; });
+    const standalone = window.matchMedia("(display-mode: standalone)").matches || navigator.standalone;
+    if (/iphone|ipad|ipod/i.test(navigator.userAgent) && !standalone) document.getElementById("ios-hint").hidden = false;
+    const offl = document.getElementById("offline");
+    const marcaRede = () => { offl.hidden = navigator.onLine; };
+    window.addEventListener("online", marcaRede); window.addEventListener("offline", marcaRede); marcaRede();
+
+    // Menu ancorado: destaca a seção visível e mantém o link ativo à vista no celular.
+    document.getElementById("nav-dot").style.setProperty("--c", lvlVar(today.nivel));
+    const navLinks = [...document.querySelectorAll("#nav a")];
+    const alvos = navLinks.map(a => document.querySelector(a.getAttribute("href"))).filter(Boolean);
+    function ativo() {
+      const y = 80;
+      let atual = alvos[0];
+      let melhor = -Infinity;
+      alvos.forEach(t => { const top = t.getBoundingClientRect().top; if (!t.closest("[hidden]") && top <= y && top > melhor) { melhor = top; atual = t; } });
+      if (window.innerHeight + scrollY >= document.documentElement.scrollHeight - 4) atual = alvos[alvos.length - 1];
+      const alvo = atual.id === "mapa" && modoBr ? "#brasil" : "#" + atual.id;
+      navLinks.forEach(a => {
+        const on = a.getAttribute("href") === alvo;
+        if (on && a.getAttribute("aria-current") !== "true") {
+          const ul = a.closest("ul");
+          ul.scrollTo({ left: a.offsetLeft - ul.clientWidth / 2 + a.clientWidth / 2, behavior: reduce ? "auto" : "smooth" });
+        }
+        a.setAttribute("aria-current", String(on));
+      });
+    }
+    window.addEventListener("scroll", ativo, { passive: true });
+    ativo();
+
+    // Mapa
+    const mapEl = document.getElementById("map");
+    const W = 960, H = 500;
+    const proj = d3.geoNaturalEarth1().fitExtent([[8, 8], [W - 8, H - 8]], { type: "Sphere" });
+    const path = d3.geoPath(proj);
+    const svg = d3.select(mapEl).insert("svg", ":first-child").attr("class", "world").attr("viewBox", `0 0 ${W} ${H}`).attr("role", "img").attr("aria-label", "Mapa mundial com o nível de cada país acompanhado");
+    const g = svg.append("g");
+    g.append("path").attr("class", "grat").attr("d", path(d3.geoGraticule10()));
+    const countries = g.append("g").selectAll("path").data(features).join("path")
+      .attr("class", "country").attr("d", path)
+      .style("fill", d => lvlColor(nivelDe(d)))
+      .attr("tabindex", d => (d.loc || d.war || d.clima || d.cib) ? 0 : null)
+      .attr("aria-label", d => `${d.nome}: ${NOME[(d.loc && d.loc.nivel) || "semdado"]}${d.war ? ", " + d.war.nome + ": " + NOME[d.war.nivel] : ""}`);
+    const hot = features.filter(f => f.loc && RANK[f.loc.nivel] >= 2);
+    const rings = g.append("g").selectAll("circle").data(hot).join("circle")
+      .attr("class", "ring").attr("r", 9)
+      .attr("cx", d => path.centroid(d)[0]).attr("cy", d => path.centroid(d)[1])
+      .style("stroke", d => lvlColor(d.loc.nivel)).style("pointer-events", "none");
+    const hotG = guerras.filter(t => t.nivel === "ativa").map(t => features.find(f => f.id === t.paises[0])).filter(Boolean);
+    const ringsG = g.append("g").selectAll("circle").data(hotG).join("circle")
+      .attr("class", "ring").attr("r", 9)
+      .attr("cx", d => path.centroid(maior(d))[0]).attr("cy", d => path.centroid(maior(d))[1])
+      .style("stroke", d => lvlColor(d.war.nivel)).style("pointer-events", "none").style("display", "none");
+    function maior(f) {
+      if (f.geometry.type !== "MultiPolygon") return f;
+      return f.geometry.coordinates.map(c => ({ type: "Feature", geometry: { type: "Polygon", coordinates: c } }))
+        .reduce((a, b) => d3.geoArea(b) > d3.geoArea(a) ? b : a);
+    }
+
+    const tip = document.getElementById("tip");
+    countries
+      .on("mousemove", (ev, d) => {
+        const r = mapEl.getBoundingClientRect();
+        tip.textContent = camada === "estoque" ? `${d.nome} · ${NOME[(d.loc && d.loc.nivel) || "semdado"]}`
+          : camada === "guerra" ? (d.war ? `${d.nome} · ${d.war.nome} · ${NOME[d.war.nivel]}` : `${d.nome} · sem conflito registrado`)
+          : camada === "ciber" ? (d.cib ? `${d.nome} · ${d.cib.nome} · ${NOME[d.cib.nivel]}` : `${d.nome} · sem ataque registrado`)
+          : (d.clima ? `${d.nome} · ${NOME[d.clima.efeito]}` : `${d.nome} · sem efeito típico registrado`);
+        tip.style.left = Math.min(Math.max(ev.clientX - r.left, 70), r.width - 70) + "px";
+        tip.style.top = (ev.clientY - r.top) + "px";
+        tip.style.opacity = 1;
+      })
+      .on("mouseleave", () => { tip.style.opacity = 0; })
+      .on("click", (ev, d) => selecionar(d))
+      .on("keydown", (ev, d) => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); selecionar(d); } });
+
+    const zoom = d3.zoom().scaleExtent([1, 8]).filter(() => false).on("zoom", ev => g.attr("transform", ev.transform));
+    svg.call(zoom);
+    const resetBtn = document.getElementById("reset");
+    function zoomTo(f) {
+      const t = d3.transition().duration(reduce ? 0 : 950).ease(d3.easeCubicInOut);
+      if (!f) { svg.transition(t).call(zoom.transform, d3.zoomIdentity); resetBtn.hidden = true; return; }
+      // Países com territórios distantes: enquadrar só o maior polígono de cada um.
+      const lista = Array.isArray(f) ? f : [f];
+      const bs = lista.map(x => path.bounds(maior(x)));
+      const x0 = d3.min(bs, b => b[0][0]), y0 = d3.min(bs, b => b[0][1]), x1 = d3.max(bs, b => b[1][0]), y1 = d3.max(bs, b => b[1][1]);
+      const k = Math.min(6, 0.7 / Math.max((x1 - x0) / W, (y1 - y0) / H));
+      const tr = d3.zoomIdentity.translate(W / 2, H / 2).scale(k).translate(-(x0 + x1) / 2, -(y0 + y1) / 2);
+      svg.transition(t).call(zoom.transform, tr);
+      resetBtn.hidden = false;
+    }
+    resetBtn.addEventListener("click", () => { if (modoBr) return resetUf(); selecionado = null; marcar(); zoomTo(null); detalhe(null); fecharFolha(); });
+
+    // Varredura: a linha passa da esquerda para a direita e cada país muda quando ela chega.
+    const scan = document.getElementById("scan");
+    function varrer() {
+      if (reduce) return;
+      scan.style.setProperty("--w", mapEl.clientWidth + "px");
+      scan.classList.remove("run"); void scan.offsetWidth; scan.classList.add("run");
+    }
+    function bate(d) {
+      const n = nivelDe(d), f = camada === "estoque" ? filtro : camada === "guerra" ? filtroG : camada === "ciber" ? filtroK : filtroC;
+      if (!n) return f === "todos";
+      const it = camada === "estoque" ? d.loc : camada === "guerra" ? d.war : null;
+      if (it && !recente(it)) return false;
+      return f === "todos" || n === f;
+    }
+    function aplicarFiltro(animar) {
+      if (animar) varrer();
+      countries.transition()
+        .delay(d => (animar && !reduce) ? (path.centroid(d)[0] / W) * 800 : 0)
+        .duration(reduce ? 0 : 300)
+        .style("fill", d => (nivelDe(d) && bate(d)) ? lvlColor(nivelDe(d)) : lvlColor(null))
+        .style("opacity", d => bate(d) ? 1 : (nivelDe(d) ? .35 : .55));
+      rings.style("display", d => camada === "estoque" && bate(d) ? null : "none");
+      ringsG.style("display", d => camada === "guerra" && bate(d) ? null : "none");
+      desenharCards(animar);
+    }
+    function marcar(t) {
+      countries.classed("sel", d => t ? d.war === t : (selecionado && d.id === selecionado.id));
+      countries.filter(".sel").raise();
+    }
+
+    // Painel de detalhe
+    const det = document.getElementById("detail");
+    function detalhe(loc, nome) {
+      det.replaceChildren();
+      det.classList.remove("swap"); void det.offsetWidth; if (!reduce) det.classList.add("swap");
+      if (!loc && !nome) {
+        const hoje = guerras.filter(x => x.eventos.some(e => e.novo)).concat(ciberes.filter(x => x.eventos.some(e => e.novo)), all.filter(x => x.eventos.some(e => e.novo)));
+        det.append(el("div", "eyebrow", "Novidade de hoje"));
+        if (!hoje.length) det.append(el("p", null, "Nenhuma novidade hoje. Clique num país ou busque um local para ver o que o governo pede e as fontes."));
+        hoje.forEach(x => {
+          const b = el("button", "card " + x.nivel); b.type = "button";
+          const r = el("div", "row"); r.append(el("span", "nm", x.nome), pill(x.nivel)); b.append(r, el("p", null, x.resumo));
+          b.addEventListener("click", () => x.atribuicao ? irCiber(x) : x.paises ? irGuerra(x) : irPara(x)); det.append(b);
+        });
+        (data.clima || []).forEach(c => {
+          const b = el("button", "card " + c.nivel); b.type = "button";
+          const r = el("div", "row"); r.append(el("span", "nm", c.nome), pill(c.nivel));
+          b.append(r, el("span", "tag", "intensidade " + c.classificacao), el("p", null, c.impacto));
+          b.addEventListener("click", () => trocarCamada("clima"));
+          det.append(b);
+        });
+        det.append(el("p", "eyebrow", "Clique num país do mapa para ver os detalhes."));
+        return;
+      }
+      if (!loc) {
+        det.append(el("div", "eyebrow", "Local"), el("h3", null, nome));
+        const r = el("div", "row"); r.append(pill(null)); det.append(r);
+        det.append(el("p", null, "O monitor não registrou orientação de estoque nem ocorrência relevante neste país. Isso não significa risco nem segurança: só não há registro aqui."));
+        return;
+      }
+      det.append(el("div", "eyebrow", loc.bloco ? "Bloco" : "País"), el("h3", null, loc.nome));
+      const r = el("div", "row"); r.append(pill(loc.nivel)); det.append(r);
+      if (loc.dias_min) {
+        const dd = el("div", "days", loc.dias_ideal ? `${loc.dias_min} a ${loc.dias_ideal}` : String(loc.dias_min));
+        dd.append(el("small", null, "dias de autonomia pedidos"));
+        det.append(dd);
+      }
+      det.append(el("p", null, loc.resumo));
+      det.append(eventos(loc.eventos));
+    }
+    function detalheGuerra(t) {
+      det.replaceChildren();
+      det.classList.remove("swap"); void det.offsetWidth; if (!reduce) det.classList.add("swap");
+      det.append(el("div", "eyebrow", "Conflito"), el("h3", null, t.nome));
+      const r = el("div", "row"); r.append(pill(t.nivel)); if (t.desde) r.append(el("span", "eyebrow", "desde " + fmt(t.desde))); det.append(r);
+      det.append(el("p", null, t.resumo), el("p", "impact", "Efeito possível: " + t.impacto), eventos(t.eventos));
+    }
+    function detalheClima(f) {
+      det.replaceChildren();
+      det.classList.remove("swap"); void det.offsetWidth; if (!reduce) det.classList.add("swap");
+      det.append(el("div", "eyebrow", fen ? fen.nome : "Clima"), el("h3", null, f ? f.nome : "Efeito típico por país"));
+      const r = el("div", "row");
+      if (f) r.append(pill(f.clima ? f.clima.efeito : null));
+      if (fen) r.append(el("span", "tag", "intensidade " + fen.classificacao));
+      det.append(r);
+      if (f && !f.clima) det.append(el("p", null, "Sem efeito típico registrado para este país. Isso não quer dizer que o El Niño não chegue lá: só não está no padrão usado aqui."));
+      if (f && f.clima) det.append(el("p", null, f.clima.resumo));
+      if (!f && fen) {
+        (fen.regioes || []).forEach(rg => {
+          const b = el("div", "card " + ""); b.style.cursor = "default"; b.style.setProperty("--c", cvar(rg.efeito));
+          const rr = el("div", "row"); rr.append(el("span", "nm", NOME[rg.efeito]), el("span", "d", rg.paises.length + (rg.paises.length === 1 ? " país" : " países")));
+          b.append(rr, el("p", null, rg.resumo)); det.append(b);
+        });
+      }
+      if (fen && fen.nota_mapa) det.append(el("p", "eyebrow", fen.nota_mapa));
+      if (fen) det.append(eventos(fen.eventos));
+    }
+    function detalheCiber(k) {
+      det.replaceChildren();
+      det.classList.remove("swap"); void det.offsetWidth; if (!reduce) det.classList.add("swap");
+      det.append(el("div", "eyebrow", "Ataque cibernético"), el("h3", null, k.nome));
+      const r = el("div", "row"); r.append(pill(k.nivel), el("span", "eyebrow", fmt(k.data))); det.append(r);
+      const m = el("div", "ciber-meta");
+      m.append(el("span", null, "Alvo: " + k.alvo), el("span", null, "Autor: " + k.ator + (k.atribuicao === "oficial" ? " (atribuição oficial)" : k.atribuicao === "imprensa" ? " (segundo a imprensa)" : "")));
+      det.append(m, el("p", null, k.resumo), el("p", "impact", "Efeito possível: " + k.impacto), eventos(k.eventos));
+    }
+    function selecionarCiber(k) {
+      if (modoBr) sairBrasil();
+      selecionado = null; countries.classed("sel", d => k.paises.includes(d.id)); countries.filter(".sel").raise();
+      zoomTo(k.paises.map(p => features.find(f => f.id === p)).filter(Boolean));
+      detalheCiber(k);
+      abrirFolha(() => resetBtn.click());
+    }
+    function irCiber(k) {
+      if (camada !== "ciber") trocarCamada("ciber");
+      selecionarCiber(k);
+      document.getElementById("mapa").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    }
+    function eventos(lista) {
+      const ul = el("ul", "events");
+      const vis = lista.filter(e => noPeriodo(e.data));
+      if (!lista.length) ul.append(el("li", null, "Sem fonte primária verificada ainda."));
+      else if (!vis.length) ul.append(el("li", null, `Nenhuma notícia ${PNOME()}. ${lista.length === 1 ? "Há 1 anterior" : "Há " + lista.length + " anteriores"}: escolha "Tudo" no período para ver.`));
+      vis.forEach(e => {
+        const li = el("li");
+        const m = el("div", "meta"); m.append(el("span", "mono", fmt(e.data)), el("span", "tag " + e.tipo, e.tipo));
+        if (e.novo) m.append(el("span", "tag novo", "novo hoje"));
+        const a = el("a", null, e.titulo); a.href = e.url; a.target = "_blank"; a.rel = "noopener";
+        li.append(m, a, el("span", "eyebrow", e.fonte)); ul.append(li);
+      });
+      return ul;
+    }
+    function pill(l) { return el("span", "pill " + (l || "semdado") + (GRANK[l] ? " g" : KRANK[l] ? " k" : ""), NOME[l || "semdado"]); }
+    function selecionar(f) {
+      if (modoBr) { if (f.id === "076") return; sairBrasil(); }
+      if (camada === "guerra" && f.war) return selecionarGuerra(f.war);
+      if (camada === "ciber" && f.cib) return selecionarCiber(f.cib);
+      selecionado = f; marcar(); zoomTo(f);
+      if (camada === "clima") detalheClima(f); else detalhe(f.loc, f.nome);
+      if (!(f.id === "076" && temBrasil())) abrirFolha(() => resetBtn.click());
+      if (f.id === "076" && temBrasil()) entrarBrasil();
+    }
+    // Folha deslizante no celular: os detalhes sobem por cima da página quando algo é selecionado.
+    const celular = window.matchMedia("(max-width: 900px)");
+    function abrirFolha(aoFechar) {
+      if (!celular.matches) return;
+      const b = el("button", "sheet-close"); b.type = "button";
+      b.append(el("span", null, "Detalhes"), el("span", null, "Fechar ✕"));
+      b.addEventListener("click", aoFechar);
+      det.prepend(b); det.classList.add("sheet"); det.scrollTop = 0;
+      // O mapa sobe para logo abaixo do menu, e o que foi ampliado fica à vista acima da folha.
+      window.scrollTo({ top: mapEl.getBoundingClientRect().top + scrollY - document.querySelector(".nav").offsetHeight - 4, behavior: reduce ? "auto" : "smooth" });
+    }
+    function fecharFolha() { det.classList.remove("sheet"); }
+    function selecionarGuerra(t) {
+      if (modoBr) sairBrasil();
+      selecionado = null; marcar(t);
+      zoomTo(t.paises.map(p => features.find(f => f.id === p)).filter(Boolean));
+      detalheGuerra(t);
+      abrirFolha(() => resetBtn.click());
+    }
+    function irGuerra(t) {
+      if (camada !== "guerra") trocarCamada("guerra");
+      selecionarGuerra(t);
+      document.getElementById("mapa").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    }
+    function irPara(loc) {
+      const f = features.find(x => x.loc === loc);
+      if (camada !== "estoque") trocarCamada("estoque");
+      if (f) selecionar(f); else { selecionado = null; marcar(); zoomTo(null); detalhe(loc); }
+      document.getElementById("mapa").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    }
+
+    // Busca
+    const q = document.getElementById("q"), sug = document.getElementById("suggest");
+    const indice = features.map(f => ({ nome: f.nome, chave: norm(f.nome + " " + f.properties.name), f, loc: f.loc }))
+      .concat(all.filter(x => x.bloco).map(b => ({ nome: b.nome, chave: norm(b.nome + " ue eu europa"), f: null, loc: b })))
+      .concat(guerras.map(t => ({ nome: t.nome, chave: norm(t.nome + " guerra conflito " + t.paises.map(p => (features.find(f => f.id === p) || {}).nome || "").join(" ")), f: null, war: t })));
+    let hl = 0, opcoes = [];
+    function sugerir() {
+      const t = norm(q.value.trim());
+      sug.replaceChildren();
+      if (!t) { sug.hidden = true; q.setAttribute("aria-expanded", "false"); return; }
+      opcoes = indice.filter(i => i.chave.includes(t))
+        .sort((a, b) => (b.war ? 10 : 0) - (a.war ? 10 : 0) || (RANK[(b.loc || {}).nivel] || 0) - (RANK[(a.loc || {}).nivel] || 0) || a.nome.localeCompare(b.nome, "pt"))
+        .slice(0, 8);
+      hl = 0;
+      if (!opcoes.length) { const li = el("li"); li.append(el("span", "eyebrow", "Nenhum local encontrado")); li.style.padding = "7px 12px"; sug.append(li); }
+      opcoes.forEach((o, i) => {
+        const li = el("li"); const b = el("button", i === 0 ? "hl" : ""); b.type = "button"; b.setAttribute("role", "option");
+        b.append(el("span", null, o.nome), pill(o.war ? o.war.nivel : (camada !== "estoque" && o.f ? nivelDe(o.f) : (o.loc && o.loc.nivel))));
+        b.addEventListener("mousedown", ev => { ev.preventDefault(); escolher(o); });
+        li.append(b); sug.append(li);
+      });
+      sug.hidden = false; q.setAttribute("aria-expanded", "true");
+      // Destaque ao vivo: países que batem com o texto acendem no mapa.
+      const ids = new Set(opcoes.filter(o => o.f).map(o => o.f.id));
+      countries.transition().duration(reduce ? 0 : 200).style("opacity", d => ids.has(d.id) ? 1 : .3);
+    }
+    function escolher(o) {
+      q.value = o.nome; sug.hidden = true; q.setAttribute("aria-expanded", "false");
+      varrer();
+      if (o.war) { if (camada !== "guerra") trocarCamada("guerra"); else aplicarFiltro(false); return selecionarGuerra(o.war); }
+      countries.transition().duration(reduce ? 0 : 300).style("opacity", d => bate(d) ? 1 : (nivelDe(d) ? .35 : .55));
+      if (o.f) selecionar(o.f); else { selecionado = null; marcar(); zoomTo(null); detalhe(o.loc); }
+    }
+    q.addEventListener("input", sugerir);
+    q.addEventListener("keydown", ev => {
+      const bs = sug.querySelectorAll("button");
+      if (ev.key === "ArrowDown" || ev.key === "ArrowUp") {
+        ev.preventDefault(); if (!bs.length) return;
+        hl = (hl + (ev.key === "ArrowDown" ? 1 : -1) + bs.length) % bs.length;
+        bs.forEach((b, i) => b.classList.toggle("hl", i === hl));
+      } else if (ev.key === "Enter") { ev.preventDefault(); if (opcoes[hl]) escolher(opcoes[hl]); }
+      else if (ev.key === "Escape") { q.value = ""; sugerir(); aplicarFiltro(false); }
+    });
+    q.addEventListener("blur", () => setTimeout(() => { sug.hidden = true; q.setAttribute("aria-expanded", "false"); if (!q.value) aplicarFiltro(false); }, 120));
+
+    // Filtro por nível e camada do mapa
+    const chipsEl = document.getElementById("chips"), legendEl = document.getElementById("legend");
+    const NIVEIS = { estoque: ["vermelho", "amarelo", "verde"], guerra: ["ativa", "elevada", "latente"], clima: ["chuva", "seca", "misto"], ciber: ["critico", "grave", "monitorar"] };
+    function desenharChips() {
+      chipsEl.replaceChildren(); legendEl.replaceChildren();
+      const atual = camada === "estoque" ? filtro : camada === "guerra" ? filtroG : camada === "ciber" ? filtroK : filtroC;
+      ["todos"].concat(NIVEIS[camada]).forEach(l => {
+        const c = el("button", "chip"); c.dataset.f = l; c.setAttribute("aria-pressed", String(l === atual));
+        if (l !== "todos") { c.style.setProperty("--c", cvar(l)); c.append(el("i")); }
+        c.append(l === "todos" ? "Todos" : NOME[l]);
+        c.addEventListener("click", () => {
+          if (camada === "estoque") filtro = l; else if (camada === "guerra") filtroG = l; else if (camada === "ciber") filtroK = l; else filtroC = l;
+          chipsEl.querySelectorAll(".chip").forEach(x => x.setAttribute("aria-pressed", String(x === c)));
+          aplicarFiltro(true);
+        });
+        chipsEl.append(c);
+        if (l !== "todos") { const s = el("span"); const i = el("i"); i.style.background = cvar(l); s.append(i, NOME[l]); legendEl.append(s); }
+      });
+      const s = el("span"); const i = el("i"); i.style.background = "var(--land)"; s.append(i, camada === "estoque" ? "Sem registro" : camada === "guerra" ? "Sem conflito registrado" : camada === "ciber" ? "Sem ataque registrado" : "Sem efeito típico registrado"); legendEl.append(s);
+    }
+    function trocarCamada(c) {
+      camada = c;
+      document.querySelectorAll(".layers button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.camada === c)));
+      selecionado = null; marcar(); zoomTo(null);
+      desenharChips(); aplicarFiltro(true);
+      if (c === "estoque") detalhe(null);
+      else if (c === "clima") detalheClima(null);
+      else if (c === "ciber") {
+        det.replaceChildren(); det.append(el("div", "eyebrow", "Ataques cibernéticos"));
+        if (data.ciber_resumo) det.append(el("p", null, data.ciber_resumo));
+        const ks = ciberes.filter(recente);
+        if (!ks.length) det.append(el("p", null, `Nenhum ataque registrado ${PNOME()}.`));
+        ks.forEach(k => {
+          const b = el("button", "card " + k.nivel); b.type = "button";
+          const r = el("div", "row"); r.append(el("span", "nm", k.nome)); b.append(r, pill(k.nivel));
+          b.addEventListener("click", () => selecionarCiber(k)); det.append(b);
+        });
+      } else {
+        det.replaceChildren(); det.append(el("div", "eyebrow", "Pressão de guerra"));
+        const gs = guerras.filter(recente);
+        if (!gs.length) det.append(el("p", null, `Nenhum conflito com notícia ${PNOME()}.`));
+        gs.sort((a, b) => GRANK[b.nivel] - GRANK[a.nivel]).forEach(t => {
+          const b = el("button", "card " + t.nivel); b.type = "button";
+          const r = el("div", "row"); r.append(el("span", "nm", t.nome)); b.append(r, pill(t.nivel));
+          b.addEventListener("click", () => selecionarGuerra(t)); det.append(b);
+        });
+      }
+    }
+    const perEl = document.getElementById("periodo");
+    function desenharPeriodo() {
+      perEl.replaceChildren(el("span", "eyebrow", "Período"));
+      PERIODOS.forEach(([n, t]) => {
+        const c = el("button", "chip", t); c.type = "button"; c.setAttribute("aria-pressed", String(n === periodo));
+        c.addEventListener("click", () => {
+          if (n === periodo) return;
+          periodo = n;
+          try { localStorage.setItem("periodo", String(n)); } catch (e) {}
+          perEl.querySelectorAll(".chip").forEach(x => x.setAttribute("aria-pressed", String(x === c)));
+          mapearCiber(); desenharGuerras(); desenharCiber(); desenharClima(); desenharFontes();
+          fecharFolha(); trocarCamada(camada);
+        });
+        perEl.append(c);
+      });
+    }
+    desenharPeriodo();
+    document.querySelectorAll(".layers button").forEach(b => b.addEventListener("click", () => { if (b.dataset.camada !== camada) trocarCamada(b.dataset.camada); }));
+    if (!fen) document.getElementById("btn-clima").remove();
+    if (!ciberes.length) document.getElementById("btn-ciber").remove();
+    desenharChips();
+
+    // Cartões dos conflitos
+    const warCards = document.getElementById("war-cards");
+    function desenharGuerras() {
+    warCards.replaceChildren();
+    const gs = guerras.filter(recente);
+    if (!gs.length) warCards.append(el("div", "empty", `Nenhum conflito com notícia ${PNOME()}.`));
+    gs.sort((a, b) => GRANK[b.nivel] - GRANK[a.nivel] || a.nome.localeCompare(b.nome, "pt")).forEach(t => {
+      const b = el("button", "card " + t.nivel); b.type = "button";
+      const r = el("div", "row"); r.append(el("span", "nm", t.nome), el("span", "d", t.desde ? "desde " + fmt(t.desde) : ""));
+      const r2 = el("div", "row"); r2.append(pill(t.nivel));
+      if (t.eventos.some(e => e.novo)) r2.append(el("span", "tag novo", "novo hoje"));
+      b.append(r, r2, el("p", null, t.resumo), el("div", "impact", t.impacto));
+      b.addEventListener("click", () => irGuerra(t));
+      warCards.append(b);
+    });
+    }
+    desenharGuerras();
+    document.getElementById("war-rule").textContent = data.regra_guerra || "";
+
+    // Cartões dos ataques cibernéticos, do mais grave ao menos grave.
+    const ciberCards = document.getElementById("ciber-cards");
+    if (data.ciber_resumo) document.getElementById("ciber-lead").textContent = data.ciber_resumo;
+    function desenharCiber() {
+    ciberCards.replaceChildren();
+    const ks = ciberes.filter(recente);
+    if (!ks.length) ciberCards.append(el("div", "empty", `Nenhum ataque registrado ${PNOME()}.`));
+    ks.forEach(k => {
+      const b = el("button", "card " + k.nivel); b.type = "button";
+      const r = el("div", "row"); r.append(el("span", "nm", k.nome), el("span", "d", fmt(k.data)));
+      const r2 = el("div", "row"); r2.append(pill(k.nivel), el("span", "tag", k.alvo));
+      if (k.eventos.some(e => e.novo)) r2.append(el("span", "tag novo", "novo hoje"));
+      b.append(r, r2, el("p", null, k.resumo), el("div", "impact", k.impacto));
+      b.addEventListener("click", () => irCiber(k));
+      ciberCards.append(b);
+    });
+    }
+    desenharCiber();
+    const critK = document.getElementById("crit-k");
+    ["monitorar", "grave", "critico"].forEach(l => {
+      const c = el("div", "crit " + l); c.append(pill(l), el("p", null, (data.criterios_ciber || {})[l] || "")); critK.append(c);
+    });
+    document.getElementById("ciber-rule").textContent = data.regra_ciber || "";
+    if (!ciberes.length) document.getElementById("ciber").hidden = true;
+
+    // Cartões do clima: a cor é o efeito no Brasil; a classificação é a intensidade oficial.
+    const climas = data.clima || [];
+    const climaCards = document.getElementById("clima-cards");
+    function desenharClima() {
+    climaCards.replaceChildren();
+    climas.forEach(c => {
+      const b = el("div", "card " + c.nivel); b.style.cursor = "default"; b.style.gridColumn = "1 / -1";
+      const r = el("div", "row"); r.append(el("span", "nm", c.nome), el("span", "d", c.pico ? "pico: " + c.pico : ""));
+      const r2 = el("div", "row"); r2.append(pill(c.nivel), el("span", "tag", "intensidade " + c.classificacao));
+      if (c.eventos.some(e => e.novo)) r2.append(el("span", "tag novo", "novo hoje"));
+      const p = el("p", null, c.resumo); p.style.webkitLineClamp = "unset";
+      b.append(r, r2, p);
+      if (c.indice) b.append(el("span", "eyebrow", c.indice));
+      b.append(el("div", "impact", "No Brasil: " + c.impacto), eventos(c.eventos));
+      climaCards.append(b);
+    });
+    }
+    desenharClima();
+    const critC = document.getElementById("crit-c");
+    Object.entries(data.criterios_clima || {}).forEach(([k, v]) => {
+      const c = el("div", "crit"); c.append(el("span", "pill semdado", k), el("p", null, v)); critC.append(c);
+    });
+    document.getElementById("clima-rule").textContent = data.regra_clima || "";
+    if (!climas.length) document.getElementById("clima").hidden = true;
+
+    // Brasil por estado, dentro do mapa principal: clicar no Brasil troca o globo pelo mapa dos estados.
+    let ufSel = null, ufApi = null;
+    function temBrasil() { return !!(fen && (fen.brasil_uf || []).length); }
+    const backBtn = document.getElementById("back-world"), mapTitle = document.getElementById("map-title");
+    const ufModoEl = document.getElementById("uf-modo"), layersEl = document.querySelector(".layers");
+    const geoBr = temBrasil() ? d3.json("geo/brasil-uf.json") : Promise.resolve(null);
+    function entrarBrasil() {
+      if (modoBr || !temBrasil()) return;
+      modoBr = true; selecionado = null; marcar(); fecharFolha();
+      const br = features.find(f => f.id === "076");
+      if (br) zoomTo(br);
+      geoBr.then(geo => {
+        if (!ufApi) ufApi = montarBrasil(geo);
+        setTimeout(() => {
+          if (!modoBr) return;
+          mapEl.classList.add("brasil");
+          resetBtn.hidden = true; backBtn.hidden = false; mapTitle.hidden = false;
+          layersEl.hidden = true; chipsEl.hidden = true; perEl.hidden = true; ufModoEl.hidden = false;
+          ufApi.mostrar();
+        }, reduce ? 0 : 750);
+      });
+    }
+    function sairBrasil() {
+      if (!modoBr) return;
+      modoBr = false; ufSel = null; fecharFolha();
+      if (ufApi) ufApi.esconder();
+      mapEl.classList.remove("brasil");
+      backBtn.hidden = true; mapTitle.hidden = true;
+      layersEl.hidden = false; chipsEl.hidden = false; perEl.hidden = false; ufModoEl.hidden = true;
+      if (!reduce) svg.node().animate([{ opacity: 0 }, { opacity: 1 }], { duration: 400, easing: "ease-out" });
+      trocarCamada(camada);
+    }
+    function resetUf() { if (ufApi) ufApi.reset(); }
+    backBtn.addEventListener("click", sairBrasil);
+    document.addEventListener("keydown", ev => {
+      if (ev.key !== "Escape" || !modoBr || ev.target === q) return;
+      if (ufSel) resetUf(); else sairBrasil();
+    });
+    function irBrasil(ev) {
+      if (ev) ev.preventDefault();
+      if (!temBrasil()) return;
+      document.getElementById("mapa").scrollIntoView({ block: "start" });
+      entrarBrasil(); ativo();
+    }
+    document.querySelector("#nav a[data-br]").addEventListener("click", irBrasil);
+    document.getElementById("open-br").addEventListener("click", irBrasil);
+    if (!temBrasil()) { document.getElementById("open-br").hidden = true; document.querySelector("#nav a[data-br]").parentNode.hidden = true; }
+    if (location.hash === "#brasil" || location.hash === "#h-uf") setTimeout(irBrasil, 300);
+    window.addEventListener("hashchange", () => { if (location.hash === "#brasil") irBrasil(); });
+
+    function montarBrasil(geo) {
+      const porUf = new Map(fen.brasil_uf.map(x => [x.uf, x]));
+      const GRAV = { alerta: 3, atencao: 2, informativo: 1 };
+      const GNOME = { alerta: "Alerta", atencao: "Atenção", informativo: "Informativo" };
+      const GCOR = { alerta: "--vermelho", atencao: "--amarelo", informativo: "--g-latente" };
+      const IMP = { chuva: "chuva e enchente", seca: "seca", calor: "calor", fogo: "fogo", agro: "safra", abastecimento: "abastecimento", saude: "saúde", outro: "outro" };
+      const ATR = { oficial: "órgão público liga ao El Niño", imprensa: "imprensa liga ao El Niño", contexto: "sem ligação explícita ao El Niño" };
+      const NOMEUF = { AC: "Acre", AL: "Alagoas", AP: "Amapá", AM: "Amazonas", BA: "Bahia", CE: "Ceará", DF: "Distrito Federal", ES: "Espírito Santo", GO: "Goiás", MA: "Maranhão", MT: "Mato Grosso", MS: "Mato Grosso do Sul", MG: "Minas Gerais", PA: "Pará", PB: "Paraíba", PR: "Paraná", PE: "Pernambuco", PI: "Piauí", RJ: "Rio de Janeiro", RN: "Rio Grande do Norte", RS: "Rio Grande do Sul", RO: "Rondônia", RR: "Roraima", SC: "Santa Catarina", SP: "São Paulo", SE: "Sergipe", TO: "Tocantins" };
+      const news = x => (x && x.noticias) || [];
+      const pior = x => news(x).reduce((a, n) => !a || GRAV[n.gravidade] > GRAV[a] ? n.gravidade : a, null);
+      let modoUf = "previsao";
+      const corUf = f => { const x = porUf.get(f.properties.uf); return modoUf === "previsao" ? lvlColor(x && x.efeito) : (pior(x) ? css(GCOR[pior(x)]) : css("--land")); };
+      const BW = 600, BH = 600;
+      const bp = d3.geoMercator().fitExtent([[16, 70], [BW - 16, BH - 16]], geo);
+      const bpath = d3.geoPath(bp);
+      const bsvg = d3.select(mapEl).insert("svg", ":first-child").attr("class", "br").attr("viewBox", `0 0 ${BW} ${BH}`)
+        .attr("role", "img").attr("aria-label", "Mapa do Brasil por estado com o efeito previsto do El Niño");
+      const bg = bsvg.append("g");
+      const ufs = bg.append("g").selectAll("path").data(geo.features).join("path")
+        .attr("class", f => "uf " + f.properties.uf.toLowerCase()).attr("d", bpath).attr("tabindex", 0)
+        .style("fill", corUf)
+        .attr("aria-label", f => `${NOMEUF[f.properties.uf]}: ${NOME[(porUf.get(f.properties.uf) || {}).efeito] || "sem dado"}`);
+      const PEQ = ["DF", "SE", "AL", "RN", "PB", "ES", "RJ"];
+      const lbls = bg.append("g").selectAll("text").data(geo.features).join("text").attr("class", "uf-lbl")
+        .attr("x", f => bpath.centroid(f)[0]).attr("y", f => bpath.centroid(f)[1]).attr("dy", ".35em")
+        .text(f => { const u = f.properties.uf, n = news(porUf.get(u)).length; return n ? `${u}·${n}` : u; })
+        .style("display", f => PEQ.includes(f.properties.uf) ? "none" : null);
+      const loc = fen.destaque_local;
+      let vale = null;
+      if (loc && loc.lon != null) {
+        const [vx, vy] = bp([loc.lon, loc.lat]);
+        vale = bg.append("g").attr("transform", `translate(${vx},${vy})`).style("pointer-events", "none");
+        vale.append("circle").attr("class", "vale").attr("r", 9);
+        vale.append("circle").attr("class", "ring").attr("r", 9).style("stroke", css("--ink"));
+        vale.append("text").attr("class", "vale-lbl").attr("x", -13).attr("y", 4).attr("text-anchor", "end").text(loc.titulo);
+      }
+      // Zoom no estado: rótulos e marcador mantêm o tamanho na tela.
+      const bzoom = d3.zoom().scaleExtent([1, 8]).filter(() => false).on("zoom", ev => {
+        const k = ev.transform.k;
+        bg.attr("transform", ev.transform);
+        lbls.style("font-size", (10 / k) + "px").style("display", f => PEQ.includes(f.properties.uf) && k < 2.5 ? "none" : null);
+        if (vale) vale.select("circle.vale").attr("r", 9 / k), vale.select("circle.ring").attr("r", 9 / k),
+          vale.select("text").style("font-size", (11 / k) + "px").attr("x", -13 / k).attr("y", 4 / k);
+      });
+      bsvg.call(bzoom);
+      function zoomUf(f) {
+        const t = d3.transition().duration(reduce ? 0 : 850).ease(d3.easeCubicInOut);
+        if (!f) return bsvg.transition(t).call(bzoom.transform, d3.zoomIdentity);
+        const [[x0, y0], [x1, y1]] = bpath.bounds(f);
+        const k = Math.min(7, 0.62 / Math.max((x1 - x0) / BW, (y1 - y0) / (BH - 60)));
+        const cy = celular.matches ? (y0 + y1) / 2 + 30 / k : (y0 + y1) / 2;
+        bsvg.transition(t).call(bzoom.transform, d3.zoomIdentity.translate(BW / 2, BH / 2 + 30).scale(k).translate(-(x0 + x1) / 2, -cy));
+      }
+      function legendaUf() {
+        legendEl.replaceChildren();
+        if (modoUf === "previsao") ["chuva", "seca", "misto", "normal"].filter(l => fen.brasil_uf.some(x => x.efeito === l)).forEach(l => {
+          const s = el("span"); const i = el("i"); i.style.background = cvar(l); s.append(i, NOME[l]); legendEl.append(s);
+        });
+        else {
+          ["alerta", "atencao", "informativo"].forEach(g => { const s = el("span"); const i = el("i"); i.style.background = `var(${GCOR[g]})`; s.append(i, GNOME[g]); legendEl.append(s); });
+          const s = el("span"); const i = el("i"); i.style.background = "var(--land)"; s.append(i, "Sem notícia"); legendEl.append(s);
+        }
+      }
+      ufModoEl.querySelectorAll("button").forEach(b => b.addEventListener("click", () => {
+        modoUf = b.dataset.modo;
+        ufModoEl.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+        ufs.transition().duration(reduce ? 0 : 300).style("fill", corUf); legendaUf();
+      }));
+      function listaNoticias(lista) {
+        const ul = el("ul", "news");
+        if (!lista.length) { ul.append(el("li", null, "Nenhuma notícia pública confiável encontrada para este estado no período.")); return ul; }
+        lista.slice().sort((a, b) => GRAV[b.gravidade] - GRAV[a.gravidade] || b.data.localeCompare(a.data)).forEach(n => {
+          const li = el("li");
+          const m = el("div", "meta");
+          m.append(el("span", "tag g-" + n.gravidade, GNOME[n.gravidade]), el("span", "tag", IMP[n.impacto] || n.impacto), el("span", "tag " + n.tipo, n.tipo), el("span", "mono", fmt(n.data)));
+          const a = el("a", null, n.titulo); a.href = n.url; a.target = "_blank"; a.rel = "noopener";
+          li.append(m, a);
+          if (n.resumo) li.append(el("p", null, n.resumo));
+          li.append(el("span", "eyebrow", n.fonte + " · " + (ATR[n.atribuicao] || "")));
+          ul.append(li);
+        });
+        return ul;
+      }
+      function painelLocal() {
+        det.replaceChildren();
+        det.classList.remove("swap"); void det.offsetWidth; if (!reduce) det.classList.add("swap");
+        det.append(el("div", "eyebrow", fen.nome + " · intensidade " + fen.classificacao), el("h3", null, "Brasil por estado"));
+        if (loc) {
+          const b = el("div", "local"); b.append(el("span", "eyebrow", "Destaque"), el("h3", null, loc.titulo));
+          const ul = el("ul"); loc.itens.forEach(t => ul.append(el("li", null, t))); b.append(ul);
+          if (loc.fonte) b.append(el("span", "eyebrow", "Fonte: " + loc.fonte));
+          det.append(b);
+        }
+        const cont = d3.rollup(fen.brasil_uf, v => v.length, x => x.efeito);
+        const r = el("div", "row"); ["chuva", "seca", "misto", "normal"].filter(l => cont.get(l)).forEach(l => r.append(pill(l), el("span", "eyebrow", cont.get(l) + (cont.get(l) === 1 ? " estado" : " estados")))); det.append(r);
+        const todas = fen.brasil_uf.flatMap(news);
+        if (todas.length) {
+          const cg = d3.rollup(todas, v => v.length, n => n.gravidade);
+          const r2 = el("div", "row"); r2.append(el("span", "eyebrow", todas.length + " notícias:"));
+          ["alerta", "atencao", "informativo"].filter(g => cg.get(g)).forEach(g => r2.append(el("span", "tag g-" + g, `${cg.get(g)} ${GNOME[g].toLowerCase()}`)));
+          det.append(r2);
+        }
+        det.append(el("p", "eyebrow", "Toque num estado para ampliar e ver a previsão e as notícias."));
+      }
+      function selUf(f) {
+        ufSel = f;
+        ufs.classed("sel", x => x === f).classed("dim", x => x !== f); ufs.filter(".sel").raise();
+        zoomUf(f);
+        resetBtn.textContent = "Ver o Brasil todo"; resetBtn.hidden = false;
+        const x = porUf.get(f.properties.uf);
+        det.replaceChildren();
+        det.classList.remove("swap"); void det.offsetWidth; if (!reduce) det.classList.add("swap");
+        det.append(el("div", "eyebrow", "Estado · " + f.properties.uf), el("h3", null, NOMEUF[f.properties.uf]));
+        const r = el("div", "row"); r.append(pill(x ? x.efeito : null));
+        const pg = pior(x); if (pg) r.append(el("span", "tag g-" + pg, "pior notícia: " + GNOME[pg].toLowerCase()));
+        det.append(r);
+        det.append(el("p", null, x ? x.resumo : "Sem previsão específica no boletim."));
+        det.append(el("div", "eyebrow", `Notícias públicas (${news(x).length})`), listaNoticias(news(x)));
+        det.append(el("p", "eyebrow", "Previsão: Painel El Niño nº 5 (Inmet, Inpe, Cemaden, ANA, SGB, Censipam), 29/10/2026"));
+        abrirFolha(reset);
+      }
+      function reset() {
+        ufSel = null; ufs.classed("sel", false).classed("dim", false);
+        zoomUf(null); resetBtn.hidden = true; resetBtn.textContent = "Ver o mundo todo";
+        fecharFolha(); painelLocal();
+      }
+      ufs.on("mousemove", (ev, f) => {
+        const rc = mapEl.getBoundingClientRect(), x = porUf.get(f.properties.uf), n = news(x).length;
+        tip.textContent = `${NOMEUF[f.properties.uf]} · ${x ? NOME[x.efeito] : "sem dado"}${n ? ` · ${n} notícias` : ""}`;
+        tip.style.left = Math.min(Math.max(ev.clientX - rc.left, 70), rc.width - 70) + "px";
+        tip.style.top = (ev.clientY - rc.top) + "px"; tip.style.opacity = 1;
+      }).on("mouseleave", () => { tip.style.opacity = 0; })
+        .on("click", (ev, f) => ufSel === f ? reset() : selUf(f))
+        .on("keydown", (ev, f) => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); selUf(f); } });
+      return {
+        mostrar() {
+          legendaUf(); painelLocal(); bsvg.call(bzoom.transform, d3.zoomIdentity);
+          if (!reduce) bsvg.node().animate([{ opacity: 0, transform: "scale(.94)" }, { opacity: 1, transform: "none" }], { duration: 450, easing: "cubic-bezier(.2,.7,.2,1)" });
+        },
+        esconder() { ufSel = null; ufs.classed("sel", false).classed("dim", false); resetBtn.textContent = "Ver o mundo todo"; },
+        reset,
+      };
+    }
+
+    // Cartões
+    const cardsEl = document.getElementById("cards");
+    function desenharCards(animar) {
+      const lista = all.filter(x => (filtro === "todos" || x.nivel === filtro) && recente(x))
+        .sort((a, b) => RANK[b.nivel] - RANK[a.nivel] || a.nome.localeCompare(b.nome, "pt"));
+      document.getElementById("locais-count").textContent =
+        `${lista.length} de ${all.length} locais${filtro === "todos" ? "" : " no nível " + NOME[filtro].toLowerCase()}${periodo ? " com notícia " + PNOME() : ""}. Ordem: mais grave primeiro.`;
+      cardsEl.replaceChildren();
+      if (!lista.length) { cardsEl.append(el("div", "empty", `Nenhum local${filtro === "todos" ? "" : " no nível " + NOME[filtro].toLowerCase()}${periodo ? " com notícia " + PNOME() : " hoje"}.`)); return; }
+      lista.forEach((x, i) => {
+        const b = el("button", "card " + x.nivel); b.type = "button";
+        const r = el("div", "row"); r.append(el("span", "nm", x.nome), el("span", "d", x.dias_min ? (x.dias_ideal ? `${x.dias_min}–${x.dias_ideal} dias` : `${x.dias_min} dias`) : "sem prazo"));
+        const r2 = el("div", "row"); r2.append(pill(x.nivel));
+        if (x.eventos.some(e => e.novo)) r2.append(el("span", "tag novo", "novo hoje"));
+        b.append(r, r2, el("p", null, x.resumo));
+        b.addEventListener("click", () => irPara(x));
+        if (animar && !reduce) b.animate([{ opacity: 0, transform: "translateY(8px)" }, { opacity: 1, transform: "none" }], { duration: 320, delay: i * 35, easing: "ease-out", fill: "backwards" });
+        cardsEl.append(b);
+      });
+    }
+
+    // Gráfico de barras: dias de autonomia
+    const barsEl = document.getElementById("bars");
+    function desenharBarras() {
+      const rows = all.filter(x => x.dias_min).sort((a, b) => (b.dias_ideal || b.dias_min) - (a.dias_ideal || a.dias_min) || a.nome.localeCompare(b.nome, "pt"));
+      const w = Math.max(280, barsEl.clientWidth), rowH = 26, top = 6, bottom = 26;
+      const left = Math.min(130, w * 0.34), right = 34;
+      const h = top + rows.length * rowH + bottom;
+      const x = d3.scaleLinear().domain([0, 14]).range([left, w - right]);
+      const y = d3.scaleBand().domain(rows.map(r => r.nome)).range([top, top + rows.length * rowH]).padding(.28);
+      const s = d3.select(barsEl).selectAll("svg").data([0]).join("svg").attr("viewBox", `0 0 ${w} ${h}`).attr("width", "100%");
+      s.selectAll("*").remove();
+      const ticks = [0, 3, 7, 10, 14];
+      s.append("g").selectAll("line").data(ticks).join("line").attr("class", "gridl")
+        .attr("x1", d => x(d)).attr("x2", d => x(d)).attr("y1", top).attr("y2", h - bottom + 4);
+      s.append("g").selectAll("text").data(ticks).join("text")
+        .attr("x", d => x(d)).attr("y", h - 8).attr("text-anchor", "middle").text(d => d === 14 ? "14 dias" : d);
+      const gr = s.append("g").selectAll("g").data(rows).join("g").attr("transform", d => `translate(0,${y(d.nome)})`)
+        .style("cursor", "pointer").on("click", (ev, d) => irPara(d));
+      gr.append("text").attr("class", "lbl").attr("x", left - 8).attr("y", y.bandwidth() / 2).attr("dy", ".35em").attr("text-anchor", "end").text(d => d.nome);
+      gr.filter(d => d.dias_ideal).append("rect").attr("class", "bar-ideal").attr("x", x(0)).attr("height", y.bandwidth())
+        .attr("width", d => x(d.dias_ideal) - x(0));
+      gr.append("rect").attr("class", "bar").attr("x", x(0)).attr("height", y.bandwidth())
+        .attr("width", reduce ? (d => x(d.dias_min) - x(0)) : 0)
+        .transition().duration(reduce ? 0 : 700).delay((d, i) => i * 40).attr("width", d => x(d.dias_min) - x(0));
+      gr.append("text").attr("class", "val").attr("y", y.bandwidth() / 2).attr("dy", ".35em")
+        .attr("x", d => x(d.dias_ideal || d.dias_min) + 6).text(d => d.dias_ideal ? `${d.dias_min}–${d.dias_ideal}` : d.dias_min);
+    }
+
+    // Faixa do histórico
+    const histEl = document.getElementById("hist");
+    const porData = new Map(data.dias.map(d => [d.data, d]));
+    function desenharHist() {
+      const fim = new Date(data.atualizado + "T12:00:00");
+      const dias = d3.range(29, -1, -1).map(i => { const d = new Date(fim); d.setDate(d.getDate() - i); return d.toISOString().slice(0, 10); });
+      const w = Math.max(260, histEl.clientWidth), gap = 3, cell = (w - gap * 29) / 30, h = cell * 2.2 + 24;
+      const s = d3.select(histEl).selectAll("svg").data([0]).join("svg").attr("viewBox", `0 0 ${w} ${h}`).attr("width", "100%");
+      s.selectAll("*").remove();
+      s.append("g").selectAll("rect").data(dias).join("rect")
+        .attr("x", (d, i) => i * (cell + gap)).attr("y", 0).attr("width", cell).attr("height", cell * 2.2)
+        .style("fill", d => porData.has(d) ? lvlColor(porData.get(d).nivel) : "none")
+        .style("stroke", d => porData.has(d) ? "none" : css("--line")).attr("stroke-width", 1)
+        .append("title").text(d => `${fmt(d)}: ${porData.has(d) ? NOME[porData.get(d).nivel] : "sem leitura"}`);
+      s.append("text").attr("x", 0).attr("y", h - 4).text(fmt(dias[0]));
+      s.append("text").attr("x", w).attr("y", h - 4).attr("text-anchor", "end").text(fmt(dias[29]));
+      const n = data.dias.length;
+      const cont = d3.rollup(data.dias, v => v.length, d => d.nivel);
+      document.getElementById("hist-note").textContent =
+        `${n} ${n === 1 ? "dia" : "dias"} com leitura desde o início do monitor. ` +
+        ["vermelho", "amarelo", "verde"].filter(l => cont.get(l)).map(l => `${NOME[l]}: ${cont.get(l)}`).join(" · ") +
+        ". Quadros vazios são dias anteriores ao início.";
+    }
+
+    // Critérios, sem novidade, fontes
+    const crit = document.getElementById("crit");
+    ["verde", "amarelo", "vermelho"].forEach(l => {
+      const c = el("div", "crit " + l); c.append(pill(l), el("p", null, data.criterios[l])); crit.append(c);
+    });
+    const quiet = document.getElementById("quiet");
+    data.sem_novidade.forEach(t => quiet.append(el("li", null, t)));
+    const critG = document.getElementById("crit-g");
+    ["latente", "elevada", "ativa"].forEach(l => {
+      const c = el("div", "crit " + l); c.append(pill(l), el("p", null, (data.criterios_guerra || {})[l] || "")); critG.append(c);
+    });
+    const tb = document.querySelector("#src tbody");
+    const fontes = all.concat(guerras, climas, ciberes).flatMap(x => x.eventos.map(e => Object.assign({ local: x.nome }, e)))
+      .concat(climas.flatMap(c => (c.brasil_uf || []).flatMap(u => (u.noticias || []).map(n => Object.assign({ local: u.uf + " · " + c.nome }, n)))))
+      .sort((a, b) => { const k = e => /^\d/.test(e.data) ? e.data : "0000"; return k(b).localeCompare(k(a)); });
+    function desenharFontes() {
+    tb.replaceChildren();
+    const vis = fontes.filter(e => noPeriodo(e.data));
+    vis.forEach(e => {
+      const tr = el("tr");
+      const td1 = el("td", "mono", fmt(e.data)); td1.style.whiteSpace = "nowrap";
+      const a = el("a", null, e.fonte); a.href = e.url; a.target = "_blank"; a.rel = "noopener";
+      const td4 = el("td"); td4.append(a);
+      const td5 = el("td"); td5.append(el("span", "tag " + e.tipo, e.tipo));
+      tr.append(td1, el("td", null, e.local), el("td", null, e.titulo), td4, td5); tb.append(tr);
+    });
+    const nOf = vis.filter(f => f.tipo === "oficial").length;
+    document.getElementById("fontes-count").textContent = periodo
+      ? `${vis.length} de ${fontes.length} fontes ${PNOME()}: ${nOf} oficiais e ${vis.length - nOf} de imprensa.`
+      : `${fontes.length} fontes: ${nOf} oficiais e ${fontes.length - nOf} de imprensa. Linha de base são orientações vigentes antes do início do monitor.`;
+    }
+    desenharFontes();
+
+    detalhe(null);
+    aplicarFiltro(false);
+    desenharBarras();
+    desenharHist();
+    const redesenhar = () => { aplicarFiltro(false); rings.style("stroke", d => lvlColor(d.loc.nivel)); ringsG.style("stroke", d => lvlColor(d.war.nivel)); desenharBarras(); desenharHist(); };
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", redesenhar);
+    new MutationObserver(redesenhar).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+    let rt; new ResizeObserver(() => { clearTimeout(rt); rt = setTimeout(() => { desenharBarras(); desenharHist(); }, 120); }).observe(document.querySelector(".charts"));
+  }).catch(err => {
+    document.getElementById("why").textContent = "Não foi possível carregar os dados do monitor. Recarregue a página; se continuar, os arquivos data.json ou geo/countries-110m.json não foram publicados junto.";
+    console.error(err);
+  });
+})();
+</script>

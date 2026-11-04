@@ -1,0 +1,5 @@
+dist/
+.wrangler/
+.claude/
+.cf-account
+__pycache__/
