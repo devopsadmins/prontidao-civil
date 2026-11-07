@@ -17,6 +17,7 @@ cp geo/countries-110m.json geo/brasil-uf.json dist/geo/
 # App instalável (PWA): manifesto, ícones e service worker com versão nova a cada build.
 python3 -I pwa/icons.py dist/icons
 cp pwa/manifest.webmanifest dist/
+cp publico/* dist/
 sed "s/__VERSAO__/$(date +%Y%m%d%H%M%S)/" pwa/sw.js > dist/sw.js
 # Imagem de compartilhamento com o nível do dia; a versão na URL força as redes a buscarem a nova.
 python3 -I og/og.py data.json dist/og.jpg
@@ -34,6 +35,24 @@ for tag in ("og:title", "twitter:title"):
     s = s.replace(f'{attr}="{tag}" content="Monitor de Prontidão Civil"', f'{attr}="{tag}" content="{titulo}"')
 s = s.replace("/og.jpg\"", f"/og.jpg?v={dia['data']}\"")
 s = s.replace('property="og:description" content="', 'property="og:description" content="' + dia["motivo"].replace('"', "'")[:180].rsplit(" ", 1)[0] + "… ", 1) if len(dia["motivo"]) > 180 else s.replace('property="og:description" content="', 'property="og:description" content="' + dia["motivo"].replace('"', "'") + " ", 1)
+# Placa do dia já preenchida no HTML: o texto aparece na primeira pintura, sem esperar o JavaScript.
+import html as H
+fmt = lambda x: "/".join(reversed(x.split("-"))) if len(x) == 10 else x
+cor = {"verde": "var(--verde)", "amarelo": "var(--amarelo)", "vermelho": "var(--vermelho)"}[dia["nivel"]]
+on = "var(--on-amarelo)" if dia["nivel"] == "amarelo" else "var(--on-sinal)"
+sub = fmt(dia["data"]) + (" · intensidade " + dia["intensidade"] if dia.get("intensidade") else "")
+upd = fmt(d.get("atualizado", "")) + (" às " + d["hora"] if d.get("hora") else "")
+trocas = [
+  ('<div class="signal" id="signal">', f'<div class="signal" id="signal" style="--lvl:{cor};--lvl-on:{on}">'),
+  ('<div class="signal-word" id="sig-word">—</div>', f'<div class="signal-word" id="sig-word">{nivel.capitalize()}</div>'),
+  ('<div class="signal-sub" id="sig-sub">carregando</div>', f'<div class="signal-sub" id="sig-sub">{H.escape(sub)}</div>'),
+  ('<p class="lead" id="why">—</p>', f'<p class="lead" id="why">{H.escape(dia["motivo"])}</p>'),
+  ('<span id="why-br">—</span>', f'<span id="why-br">{H.escape(dia.get("brasil", ""))}</span>'),
+  ('<span id="upd" class="mono">—</span>', f'<span id="upd" class="mono">{H.escape(upd)}</span>'),
+]
+for velho, novo in trocas:
+    assert s.count(velho) == 1, velho
+    s = s.replace(velho, novo)
 p.write_text(s, encoding="utf-8")
 EOF
 if [[ "${1:-}" == "deploy" ]]; then

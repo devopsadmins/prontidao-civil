@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://prontidao.coderstudio.club/sitemap.xml

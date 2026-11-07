@@ -23,9 +23,15 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Prontidão">
+<script>document.documentElement.classList.add("carregando");setTimeout(function(){document.documentElement.classList.remove("carregando")},6000);</script>
+<style>html{scrollbar-gutter:stable}html.carregando #placard ~ section,html.carregando footer{display:none}html.carregando #placard .war-line,html.carregando #tallies{visibility:hidden}</style>
+<link rel="preload" href="data.json" as="fetch" crossorigin>
+<link rel="preload" href="geo/countries-110m.json" as="fetch" crossorigin>
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js" as="script">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..800&family=Public+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..800&family=Public+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..800&family=Public+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap"></noscript>
 <style>
 /* Layout: placa de aviso no topo, mapa largo com busca, lista de locais, dois gráficos, método e fontes. Tudo numa coluna de 1180px. */
 :root {
@@ -163,7 +169,7 @@ section, #placard { scroll-margin-top: 64px; }
 .war-line { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding-top: 14px; border-top: 1px dashed var(--line); }
 .war-line strong { font-family: var(--font-display); font-stretch: 75%; font-size: 20px; text-transform: uppercase; letter-spacing: .02em; color: var(--g-ativa); }
 .war-line span { color: var(--muted); font-size: 14px; }
-.clima-line strong { color: var(--amarelo); }
+.clima-line strong { color: color-mix(in srgb, var(--amarelo) 55%, var(--ink)); }
 .clima-line a { color: var(--muted); font-size: 14px; }
 .ciber-line strong { color: var(--k-grave); }
 .ciber-line a { color: var(--muted); font-size: 14px; }
@@ -474,9 +480,9 @@ footer { padding-block: 28px 48px; border-top: 1px solid var(--line); color: var
   </footer>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
-<script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+<script type="module">
 (function () {
   const RANK = { vermelho: 3, amarelo: 2, verde: 1 };
   const NOME = { verde: "Verde", amarelo: "Amarelo", vermelho: "Vermelho", semdado: "Sem registro", ativa: "Guerra ativa", elevada: "Tensão elevada", latente: "Tensão latente", chuva: "Mais chuva", seca: "Mais seca", misto: "Chuva e seca", normal: "Perto da média", critico: "Crítico", grave: "Grave", monitorar: "Monitorar" };
@@ -572,6 +578,7 @@ footer { padding-block: 28px 48px; border-top: 1px solid var(--line); color: var
 
     // App instalável: registra o service worker e oferece o botão quando o navegador permitir.
     if ("serviceWorker" in navigator && location.protocol === "https:") navigator.serviceWorker.register("sw.js").catch(() => {});
+    document.documentElement.classList.remove("carregando");
     const instBtn = document.getElementById("install");
     let pedido = null;
     window.addEventListener("beforeinstallprompt", ev => { ev.preventDefault(); pedido = ev; instBtn.hidden = false; });
@@ -611,13 +618,14 @@ footer { padding-block: 28px 48px; border-top: 1px solid var(--line); color: var
     const W = 960, H = 500;
     const proj = d3.geoNaturalEarth1().fitExtent([[8, 8], [W - 8, H - 8]], { type: "Sphere" });
     const path = d3.geoPath(proj);
-    const svg = d3.select(mapEl).insert("svg", ":first-child").attr("class", "world").attr("viewBox", `0 0 ${W} ${H}`).attr("role", "img").attr("aria-label", "Mapa mundial com o nível de cada país acompanhado");
+    const svg = d3.select(mapEl).insert("svg", ":first-child").attr("class", "world").attr("viewBox", `0 0 ${W} ${H}`).attr("role", "group").attr("aria-label", "Mapa mundial com o nível de cada país acompanhado");
     const g = svg.append("g");
     g.append("path").attr("class", "grat").attr("d", path(d3.geoGraticule10()));
     const countries = g.append("g").selectAll("path").data(features).join("path")
       .attr("class", "country").attr("d", path)
       .style("fill", d => lvlColor(nivelDe(d)))
       .attr("tabindex", d => (d.loc || d.war || d.clima || d.cib) ? 0 : null)
+      .attr("role", "img")
       .attr("aria-label", d => `${d.nome}: ${NOME[(d.loc && d.loc.nivel) || "semdado"]}${d.war ? ", " + d.war.nome + ": " + NOME[d.war.nivel] : ""}`);
     const hot = features.filter(f => f.loc && RANK[f.loc.nivel] >= 2);
     const rings = g.append("g").selectAll("circle").data(hot).join("circle")
@@ -1091,12 +1099,13 @@ footer { padding-block: 28px 48px; border-top: 1px solid var(--line); color: var
       const bp = d3.geoMercator().fitExtent([[16, 70], [BW - 16, BH - 16]], geo);
       const bpath = d3.geoPath(bp);
       const bsvg = d3.select(mapEl).insert("svg", ":first-child").attr("class", "br").attr("viewBox", `0 0 ${BW} ${BH}`)
-        .attr("role", "img").attr("aria-label", "Mapa do Brasil por estado com o efeito previsto do El Niño");
+        .attr("role", "group").attr("aria-label", "Mapa do Brasil por estado com o efeito previsto do El Niño");
       const bg = bsvg.append("g");
       const ufs = bg.append("g").selectAll("path").data(geo.features).join("path")
         .attr("class", f => "uf " + f.properties.uf.toLowerCase()).attr("d", bpath).attr("tabindex", 0)
         .style("fill", corUf)
-        .attr("aria-label", f => `${NOMEUF[f.properties.uf]}: ${NOME[(porUf.get(f.properties.uf) || {}).efeito] || "sem dado"}`);
+          .attr("role", "img")
+      .attr("aria-label", f => `${NOMEUF[f.properties.uf]}: ${NOME[(porUf.get(f.properties.uf) || {}).efeito] || "sem dado"}`);
       const PEQ = ["DF", "SE", "AL", "RN", "PB", "ES", "RJ"];
       const lbls = bg.append("g").selectAll("text").data(geo.features).join("text").attr("class", "uf-lbl")
         .attr("x", f => bpath.centroid(f)[0]).attr("y", f => bpath.centroid(f)[1]).attr("dy", ".35em")
@@ -1313,7 +1322,7 @@ footer { padding-block: 28px 48px; border-top: 1px solid var(--line); color: var
     vis.forEach(e => {
       const tr = el("tr");
       const td1 = el("td", "mono", fmt(e.data)); td1.style.whiteSpace = "nowrap";
-      const a = el("a", null, e.fonte); a.href = e.url; a.target = "_blank"; a.rel = "noopener";
+      const a = el("a", null, e.fonte); a.href = e.url; a.target = "_blank"; a.rel = "noopener"; a.setAttribute("aria-label", e.fonte + ": " + e.titulo);
       const td4 = el("td"); td4.append(a);
       const td5 = el("td"); td5.append(el("span", "tag " + e.tipo, e.tipo));
       tr.append(td1, el("td", null, e.local), el("td", null, e.titulo), td4, td5); tb.append(tr);
@@ -1334,6 +1343,7 @@ footer { padding-block: 28px 48px; border-top: 1px solid var(--line); color: var
     new MutationObserver(redesenhar).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
     let rt; new ResizeObserver(() => { clearTimeout(rt); rt = setTimeout(() => { desenharBarras(); desenharHist(); }, 120); }).observe(document.querySelector(".charts"));
   }).catch(err => {
+    document.documentElement.classList.remove("carregando");
     document.getElementById("why").textContent = "Não foi possível carregar os dados do monitor. Recarregue a página; se continuar, os arquivos data.json ou geo/countries-110m.json não foram publicados junto.";
     console.error(err);
   });

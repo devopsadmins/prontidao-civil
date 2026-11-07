@@ -1,0 +1,11 @@
+# Monitor de Prontidão Civil
+
+> Painel público com o nível do dia (verde, amarelo ou vermelho) de prontidão civil: guerras, ataques cibernéticos, orientações oficiais de estoque de emergência por país e o El Niño no Brasil. Toda informação tem fonte. Atualizado a cada duas horas.
+
+## Dados
+
+- [data.json](https://prontidao.coderstudio.club/data.json): nível de cada dia, conflitos, ataques cibernéticos, orientações por país, clima e fontes
+
+## Relacionado
+
+- [Monitor de Regeneração](https://regeneracao.coderstudio.club/): o painel irmão, com quem está ajudando e as grandes obras do bem
