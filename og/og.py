@@ -91,7 +91,7 @@ def main(dados, saida):
         dr.text((x, 404), "PRESSÃO DE GUERRA NO MUNDO", font=mono(20), fill=MUTED)
         dr.text((x, 498), PRESSAO[dia["guerra"]], font=archivo(64, 800, 70), fill=GUERRA, anchor="ls")
     dr.text((x, 532), "Justificativa e fontes abertas", font=mono(20), fill=MUTED)
-    dr.text((x, 562), "prontidao-civil.pages.dev", font=mono(22), fill=PAPEL)
+    dr.text((x, 562), "prontidao.coderstudio.club", font=mono(22), fill=PAPEL)
     img.save(saida, "JPEG", quality=86, optimize=True, progressive=True)
 
 

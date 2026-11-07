@@ -1,6 +1,6 @@
 # Monitor de Prontidão Civil
 
-Site público: https://prontidao-civil.pages.dev
+Site público: https://prontidao.coderstudio.club
 
 Painel que acompanha orientações de defesa civil e estoque doméstico em 14 países, a pressão de guerra por conflito, ataques cibernéticos e o El Niño (pela classificação oficial da NOAA e do Painel El Niño do Inmet). Classifica cada dia em VERDE, AMARELO ou VERMELHO com critérios fixos e públicos.
 
