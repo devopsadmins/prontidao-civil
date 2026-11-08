@@ -95,6 +95,17 @@ h2 { font-size: clamp(24px, 3.2vw, 34px); font-weight: 800; }
 h3 { font-size: 20px; font-weight: 700; font-stretch: 85%; }
 section { padding-block: 40px; border-top: 1px solid var(--line); }
 section, #placard { scroll-margin-top: 64px; }
+/* Ponte para o app Reserva da Casa (cores do próprio app, para se ver que é outro lugar). */
+.ponte { display: flex; align-items: center; gap: 14px; margin: 18px 0 6px; padding: 14px 16px; border-radius: 14px; background: #0f2a1e; color: #eef3ee; text-decoration: none; }
+.ponte:hover { background: #153526; }
+.ponte:focus-visible { outline: 3px solid #6fd3b8; outline-offset: 2px; }
+.ponte img { flex: none; border-radius: 11px; }
+.ponte span { display: block; }
+.ponte .ponte-t { font-weight: 800; font-size: 16px; color: #ffffff; }
+.ponte .ponte-t b { color: #ff8a3d; }
+.ponte .ponte-s { font-size: 13.5px; color: #a9bfae; margin-top: 2px; }
+.ponte .ponte-cta { margin-left: auto; flex: none; font-weight: 800; font-size: 14px; color: #1a0e05; background: #ff8a3d; border-radius: 10px; padding: 8px 12px; white-space: nowrap; }
+@media (max-width: 520px) { .ponte { flex-wrap: wrap; } .ponte .ponte-cta { margin-left: 0; width: 100%; text-align: center; } }
 .nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--paper) 94%, transparent); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding-inline: max(16px, env(safe-area-inset-left, 0px)); }
 .nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
 .nav ul::-webkit-scrollbar { display: none; }
@@ -318,6 +329,7 @@ footer { padding-block: 28px 48px; border-top: 1px solid var(--line); color: var
       <li><a href="#calmo">Sem novidade</a></li>
       <li><a href="#metodo">Método</a></li>
       <li><a href="#fontes">Fontes</a></li>
+      <li><a href="https://reservas.coderstudio.club/" target="_blank" rel="noopener">Minha casa ↗</a></li>
     </ul>
   </nav>
 
@@ -340,6 +352,15 @@ footer { padding-block: 28px 48px; border-top: 1px solid var(--line); color: var
       <div class="tallies" id="tallies"></div>
     </div>
   </div>
+
+  <a class="ponte" href="https://reservas.coderstudio.club/" target="_blank" rel="noopener">
+    <img src="reserva-da-casa.svg" alt="" width="44" height="44" loading="lazy">
+    <span>
+      <span class="ponte-t">Quanto a sua casa aguenta? <b>Reserva da Casa</b></span>
+      <span class="ponte-s">Calcule água e comida para a sua família e monte o plano, sem cadastro.</span>
+    </span>
+    <span class="ponte-cta">Abrir o app ↗</span>
+  </a>
 
   <section id="mapa" aria-labelledby="h-mapa">
     <div class="sec-head">
@@ -475,6 +496,7 @@ footer { padding-block: 28px 48px; border-top: 1px solid var(--line); color: var
 
   <footer>
     <span>Monitor de Prontidão Civil · dados em <a href="data.json">data.json</a>, abertos para conferência</span>
+    <span>Para preparar a sua casa: <a href="https://reservas.coderstudio.club/" target="_blank" rel="noopener">Reserva da Casa</a></span>
     <span>Clima e tempo no Brasil: <a href="https://www.gov.br/cemaden/pt-br" target="_blank" rel="noopener">Cemaden</a> · <a href="https://clima.cptec.inpe.br" target="_blank" rel="noopener">CPTEC/INPE</a> · <a href="https://www.ipmetradar.com.br" target="_blank" rel="noopener">IPMet (Unesp)</a> · <a href="https://portal.inmet.gov.br" target="_blank" rel="noopener">Inmet</a></span>
     <span>Panorama de conflitos para conferência: <a href="https://cfr.org/global-conflict-tracker" target="_blank" rel="noopener">CFR Global Conflict Tracker</a> · <a href="https://acleddata.com/series/conflict-watchlist-2026" target="_blank" rel="noopener">ACLED Watchlist 2026</a> · Contornos: Natural Earth via world-atlas</span>
   </footer>
