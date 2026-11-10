@@ -614,7 +614,7 @@ footer { padding-block: 28px 48px; border-top: 1px solid var(--line); color: var
 
     // Menu ancorado: destaca a seção visível e mantém o link ativo à vista no celular.
     document.getElementById("nav-dot").style.setProperty("--c", lvlVar(today.nivel));
-    const navLinks = [...document.querySelectorAll("#nav a")];
+    const navLinks = [...document.querySelectorAll('#nav a[href^="#"]')];
     const alvos = navLinks.map(a => document.querySelector(a.getAttribute("href"))).filter(Boolean);
     function ativo() {
       const y = 80;
