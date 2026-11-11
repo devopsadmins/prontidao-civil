@@ -1,0 +1,5 @@
+/status.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=300
+/data.json
+  Access-Control-Allow-Origin: *

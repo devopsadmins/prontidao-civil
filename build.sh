@@ -18,6 +18,15 @@ cp geo/countries-110m.json geo/brasil-uf.json dist/geo/
 python3 -I pwa/icons.py dist/icons
 cp pwa/manifest.webmanifest dist/
 cp publico/* dist/
+# Status curto para os outros apps da família (Boatos, Regeneração, Reserva da Casa) lerem sem baixar o data.json inteiro.
+python3 -I - <<'PY'
+import json, re
+from pathlib import Path
+d = json.loads(Path("data.json").read_text(encoding="utf-8"))
+dia = d["dias"][-1]
+frase = re.split(r"(?<=[.!?])\s", dia["motivo"].strip(), maxsplit=1)[0]
+Path("dist/status.json").write_text(json.dumps({"nivel": dia["nivel"], "data": dia["data"], "hora": d.get("hora", ""), "resumo": frase}, ensure_ascii=False), encoding="utf-8")
+PY
 sed "s/__VERSAO__/$(date +%Y%m%d%H%M%S)/" pwa/sw.js > dist/sw.js
 # Imagem de compartilhamento com o nível do dia; a versão na URL força as redes a buscarem a nova.
 python3 -I og/og.py data.json dist/og.jpg
