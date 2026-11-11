@@ -66,6 +66,17 @@ for k in d.get("ciber", []):
         erros.append(f"{k.get('nome')}: sem países")
     eventos(k.get("nome"), k.get("eventos", []))
 
+for b in d.get("boatos", []):
+    if b.get("veredito") not in {"falso", "fora de contexto", "enganoso"}:
+        erros.append(f"boato {b.get('id')}: veredito inválido {b.get('veredito')!r}")
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", b.get("data", "")):
+        erros.append(f"boato {b.get('id')}: data inválida")
+    if not b.get("diz") or not b.get("verdade"):
+        erros.append(f"boato {b.get('id')}: falta o que circula ou a verdade")
+    if not b.get("eventos"):
+        erros.append(f"boato {b.get('id')}: sem fonte do desmentido")
+    eventos(f"boato {b.get('id')}", b.get("eventos", []))
+
 for c in d.get("clima", []):
     if c.get("nivel") not in NIVEIS:
         erros.append(f"{c.get('nome')}: nível inválido {c.get('nivel')!r}")

@@ -1,6 +1,6 @@
 {
-  "atualizado": "2026-11-09",
-  "hora": "18:06",
+  "atualizado": "2026-11-11",
+  "hora": "10:11",
   "criterios": {
     "verde": "Nada novo, ou só repercussão de orientações antigas.",
     "amarelo": "Orientação nova ou ampliada (país novo, prazo maior, lei aprovada), incidente relevante de infraestrutura, ou algo que afete abastecimento ou energia no Brasil.",
@@ -66,6 +66,24 @@
       "intensidade": "moderado",
       "motivo": "O Estreito de Ormuz segue fechado, com cerca de 5% do tráfego de antes da guerra. Trump disse que uma nova guerra com o Irã é \"altamente improvável\" se houver acordo, e o primeiro-ministro do Catar vai à Casa Branca hoje; a janela da proposta iraniana fecha em 11/11. À tarde, o Brent caiu cerca de 6%, para perto de US$ 93, com notícias de um possível acordo preliminar sobre o enriquecimento de urânio, mesmo com um ataque ao oleoduto Leste-Oeste da Arábia Saudita (incêndio limitado, operação mantida, segundo a imprensa estatal saudita). Enquanto navios não passarem por Ormuz, continua o risco no diesel. A França atribuiu oficialmente ao Irã a 1ª onda de ataques às geladeiras de supermercados. No Vale do Paraíba não houve estrago novo.",
       "brasil": "Nada novo no Vale do Paraíba depois do temporal de 07/11. Sem apagão relevante, racionamento ou reajuste novo do diesel ou da gasolina (o querosene de aviação subiu 7,2% em 01/11). Nada novo em ataques a banco, PIX, energia ou água no Brasil.",
+      "guerra": "alta",
+      "ciber": "alta"
+    },
+    {
+      "data": "2026-11-10",
+      "nivel": "amarelo",
+      "intensidade": "moderado",
+      "motivo": "O Estreito de Ormuz segue fechado, com cerca de 5% do tráfego de antes da guerra, e a Guarda Revolucionária do Irã diz que mais dois petroleiros pegaram fogo no estreito hoje. Mas o preço aliviou: Trump disse que a guerra está \"efetivamente encerrada\" do ponto de vista militar, e o Brent caiu abaixo de US$ 90 pela primeira vez desde agosto. O governo prorrogou até 09/12 a isenção de impostos federais sobre a gasolina e o etanol por causa do petróleo caro. Começaram as conversas de paz da Ucrânia em Abu Dhabi. No Vale do Paraíba o dia é frio, com chuva isolada e sem alerta.",
+      "brasil": "Isenção de PIS/Cofins e Cide sobre gasolina e etanol prorrogada até 09/12 (o diesel fica fora). Nenhum reajuste novo da Petrobras. Cantareira em 53,6%, ainda na faixa de atenção. Vale do Paraíba frio, sem alerta. A Autoridade Portuária de Santos confirmou à noite um ataque hacker aos seus sistemas (instáveis desde 06/11) e a Polícia Federal abriu inquérito; navios e acessos ao porto seguem normais, sem efeito em combustível ou abastecimento. O \"apagão mundial de 17/11\" é boato.",
+      "guerra": "alta",
+      "ciber": "alta"
+    },
+    {
+      "data": "2026-11-11",
+      "nivel": "amarelo",
+      "intensidade": "moderado",
+      "motivo": "O Irã negou que esteja negociando com os EUA e disse que o Estreito de Ormuz só reabre quando sete condições forem cumpridas, entre elas o fim das sanções e do bloqueio naval. Em novembro já houve pelo menos 37 ataques a navios dentro e perto do estreito, o maior total mensal da guerra, e o Brent voltou a subir um pouco, para perto de US$ 93. O secretário de Estado dos EUA disse que não há necessidade de retomar o combate. No Vale do Paraíba, o Inmet pôs toda a região em alerta de tempestade para quinta-feira (12/11).",
+      "brasil": "Nenhum reajuste novo confirmado da Petrobras (a notícia de alta \"a partir desta sexta\" saiu só numa rádio regional e não foi confirmada); isenção federal de gasolina e etanol até 09/12. Alerta amarelo do Inmet de tempestade para a RMVale em 12/11, com até 50 mm, rajadas de 60 km/h e possível granizo. Em São José dos Campos há polêmica sobre a qualidade da água; a Sabesp diz que é potável e não há falta de água. Os sistemas de TI do Porto de Santos seguem fora do ar, mas o porto opera normalmente.",
       "guerra": "alta",
       "ciber": "alta"
     }
@@ -386,13 +404,13 @@
     }
   ],
   "sem_novidade": [
-    "UE, Suécia, Noruega, Finlândia, Alemanha, França, Reino Unido e Japão: nenhum comunicado novo das agências de proteção civil.",
-    "Malásia: o governo diz que não é preciso estocar (comida para 6 meses); entidades de consumidores pedem kit de 72 horas. Não é orientação oficial nova.",
+    "UE, Suécia, Noruega, Finlândia, Alemanha, França e Japão: nenhum comunicado novo das agências de proteção civil.",
+    "Reino Unido: só repercussão do Be Ready (vendas de enlatados e água em alta) e um relatório dos Lordes pedindo prontidão para guerra em 1.000 dias.",
     "EUA (FEMA, Ready.gov, FORTRESS): nada novo.",
-    "Cabos submarinos, gasodutos e rede elétrica: nenhum incidente grande novo encontrado.",
-    "China x Taiwan, Coreia do Norte, Índia x Paquistão e EUA x Venezuela: nenhum fato novo confirmado.",
-    "Brasil: nenhum reajuste novo de diesel ou gasolina, apagão ou racionamento; a orientação de kit de 72 horas da Defesa Civil Nacional não mudou.",
-    "El Niño: nenhum boletim oficial novo; próxima NOAA em 12/11 e próximo Painel no fim de novembro."
+    "Cabos submarinos e gasodutos: nenhum incidente grande novo encontrado.",
+    "Índia x Paquistão e EUA x Venezuela: nenhum fato militar novo.",
+    "Brasil: nenhum reajuste confirmado da Petrobras, apagão ou racionamento; o \"apagão mundial de 17/11\" é boato; a orientação de kit de 72 horas da Defesa Civil Nacional não mudou.",
+    "El Niño: nenhum boletim oficial novo; a NOAA publica amanhã (12/11) e o Painel no fim de novembro."
   ],
   "criterios_guerra": {
     "latente": "Disputa armada conhecida, sem confronto relevante encontrado nos últimos 6 meses.",
@@ -411,40 +429,80 @@
         "422"
       ],
       "desde": "2026-02-28",
-      "resumo": "Guerra iniciada em 28/02/2026. O Estreito de Ormuz, por onde passava cerca de 1/5 do petróleo e do gás do mundo, segue fechado, com cerca de 5% do tráfego de antes da guerra (petroleiros em 3%). Os EUA atacaram a ilha de Qeshm em 02/11 e alvos perto de Ormuz em 03/11. O Catar propõe um plano para reabrir Ormuz com medidas de confiança; o Irã exige fim do bloqueio e alívio de sanções antes. Trump ainda não decidiu entre novo ataque, acordo ou mais pressão; o vice Vance defende acordo. Em 08/11, dois mísseis balísticos dos houthis miraram o distrito financeiro de Riad e destroços atingiram uma torre da Aramco. Em 08/11, Trump disse que nova guerra é \"altamente improvável\" se o Irã fechar acordo nuclear e reabrir Ormuz; o premiê do Catar vai à Casa Branca em 09/11 e a janela da proposta iraniana fecha em 11/11. O CENTCOM criou a Força-Tarefa Iron Gate e um drone atingiu o campo de gás Khor Mor, no Iraque. Em 09/11, o oleoduto Leste-Oeste da Arábia Saudita, rota que desvia de Ormuz, foi atingido na região de Medina (incêndio limitado, operação mantida, segundo a imprensa estatal saudita), e há notícias de um possível acordo preliminar para reduzir o enriquecimento de urânio do Irã, ainda sem confirmação oficial. No mesmo dia, a França atribuiu ao IRGC iraniano a 1ª onda de ataques às geladeiras de supermercados.",
-      "impacto": "Petróleo acima de US$ 100 de março até o começo de novembro; em 09/11 o Brent caiu cerca de 6%, para perto de US$ 93, com a aposta num acordo, mas analistas veem chance alta de novos ataques. É o conflito que mais pesa no preço do combustível no Brasil.",
+      "resumo": "Guerra iniciada em 28/02/2026. O Estreito de Ormuz, por onde passava cerca de 1/5 do petróleo e do gás do mundo, segue fechado, com cerca de 5% do tráfego de antes da guerra (petroleiros em 3%). Os EUA atacaram a ilha de Qeshm em 02/11 e alvos perto de Ormuz em 03/11. O Catar propõe um plano para reabrir Ormuz com medidas de confiança; o Irã exige fim do bloqueio e alívio de sanções antes. Trump ainda não decidiu entre novo ataque, acordo ou mais pressão; o vice Vance defende acordo. Em 08/11, dois mísseis balísticos dos houthis miraram o distrito financeiro de Riad e destroços atingiram uma torre da Aramco. Em 08/11, Trump disse que nova guerra é \"altamente improvável\" se o Irã fechar acordo nuclear e reabrir Ormuz; o premiê do Catar vai à Casa Branca em 09/11 e a janela da proposta iraniana fecha em 11/11. O CENTCOM criou a Força-Tarefa Iron Gate e um drone atingiu o campo de gás Khor Mor, no Iraque. Em 09/11, o oleoduto Leste-Oeste da Arábia Saudita, rota que desvia de Ormuz, foi atingido na região de Medina (incêndio limitado, operação mantida, segundo a imprensa estatal saudita), e há notícias de um possível acordo preliminar para reduzir o enriquecimento de urânio do Irã, ainda sem confirmação oficial. No mesmo dia, a França atribuiu ao IRGC iraniano a 1ª onda de ataques às geladeiras de supermercados. Em 10/11, depois de falar com o premiê do Catar, Trump disse que a guerra está \"efetivamente encerrada\" do ponto de vista militar e que novos ataques são altamente improváveis enquanto a negociação avança. Ormuz segue fechado: a Guarda Revolucionária diz que mais dois petroleiros pegaram fogo no estreito (a 3ª alegação em uma semana, sem confirmação dos EUA). O Irã anunciou o fim do limite de 2.000 km para seus mísseis, e os EUA tiraram aviões-tanque da base de RAF Mildenhall, no Reino Unido, por causa de uma ameaça iraniana. Em 11/11, o Irã negou que esteja negociando com os EUA e disse que Ormuz só reabre quando sete condições forem cumpridas (entre elas o fim das sanções e do bloqueio naval dos EUA e o fim dos combates em todas as frentes); o secretário de Estado Rubio disse que não há necessidade de retomar grandes operações de combate. A Guarda Revolucionária diz que três petroleiros pegaram fogo em 10/11 (o UKMTO confirmou dois incidentes), e novembro já soma pelo menos 37 ataques a navios na região, o maior total mensal da guerra.",
+      "impacto": "Petróleo acima de US$ 100 de março até o começo de novembro; em 10/11 o Brent caiu abaixo de US$ 90 e em 11/11 voltou para perto de US$ 93. Os EUA liberam 40 milhões de barris da reserva estratégica e a Agência Internacional de Energia coordena uma liberação de emergência. Enquanto Ormuz não reabrir, o risco no diesel continua. É o conflito que mais pesa no preço do combustível no Brasil; o governo prorrogou até 09/12 a isenção de impostos sobre gasolina e etanol.",
       "eventos": [
+        {
+          "data": "2026-11-11",
+          "titulo": "Irã nega conversa com os EUA e põe sete condições para reabrir Ormuz",
+          "url": "https://www.aljazeera.com/news/2026/11/11/iran-denies-talks-with-us-says-hormuz-will-stay-shut-until-demands-are-met",
+          "fonte": "Al Jazeera",
+          "tipo": "imprensa",
+          "novo": true
+        },
+        {
+          "data": "2026-11-11",
+          "titulo": "Rubio: não há necessidade de retomar grandes operações de combate",
+          "url": "https://www.cbsnews.com",
+          "fonte": "CBS News",
+          "tipo": "imprensa",
+          "novo": true
+        },
+        {
+          "data": "2026-11-10",
+          "titulo": "Trump diz que a guerra está \"efetivamente encerrada\"; Brent abaixo de US$ 90",
+          "url": "https://www.iransitrep.com/",
+          "fonte": "Iran SITREP, dia 256 (agregador independente)",
+          "tipo": "imprensa"
+        },
+        {
+          "data": "2026-11-10",
+          "titulo": "IRGC diz que mais dois petroleiros pegaram fogo em Ormuz (sem confirmação dos EUA)",
+          "url": "https://tass.com/world/2215483",
+          "fonte": "TASS, citando a Marinha do IRGC",
+          "tipo": "imprensa"
+        },
+        {
+          "data": "2026-11-10",
+          "titulo": "Irã tira o limite de 2.000 km dos mísseis balísticos",
+          "url": "https://www.aljazeera.com/news/2026/11/10/iran-lifts-2000km-limit-on-its-ballistic-missiles-what-that-means",
+          "fonte": "Al Jazeera",
+          "tipo": "imprensa"
+        },
+        {
+          "data": "2026-11-10",
+          "titulo": "EUA tiram aviões-tanque de RAF Mildenhall por ameaça iraniana",
+          "url": "https://www.aljazeera.com/news/2026/11/10/trump-says-israel-gulf-allies-must-repay-iran-war-cost-what-does-it-mean",
+          "fonte": "Al Jazeera, WSJ, CBS e NBC",
+          "tipo": "imprensa"
+        },
         {
           "data": "2026-11-09",
           "titulo": "Oleoduto Leste-Oeste saudita atingido em Medina; operação mantida",
           "url": "https://www.thenationalnews.com/",
           "fonte": "Reuters, FT e The National (citam a imprensa estatal saudita)",
-          "tipo": "imprensa",
-          "novo": true
+          "tipo": "imprensa"
         },
         {
           "data": "2026-11-09",
           "titulo": "Brent cai cerca de 6% com a esperança de acordo com o Irã",
           "url": "https://oilprice.com/oil-price-charts/",
           "fonte": "OilPrice.com",
-          "tipo": "imprensa",
-          "novo": true
+          "tipo": "imprensa"
         },
         {
           "data": "2026-11-09",
           "titulo": "Dia 255: premiê do Catar na Casa Branca; janela até 11/11; Iraque exporta por corredor de Omã",
           "url": "https://www.iransitrep.com/",
           "fonte": "Iran SITREP (agregador independente)",
-          "tipo": "imprensa",
-          "novo": true
+          "tipo": "imprensa"
         },
         {
           "data": "2026-11-08",
           "titulo": "Trump: nova guerra \"altamente improvável\" se houver acordo; drone atinge campo de gás Khor Mor",
           "url": "https://www.foxnews.com/live-news/iran-war-news-trump-saudi-houthi-november-8",
           "fonte": "Fox News",
-          "tipo": "imprensa",
-          "novo": true
+          "tipo": "imprensa"
         },
         {
           "data": "2026-11-08",
@@ -473,62 +531,6 @@
           "url": "https://www.iransitrep.com/",
           "fonte": "Iran SITREP (agregador independente)",
           "tipo": "imprensa"
-        },
-        {
-          "data": "2026-11-06",
-          "titulo": "Dia 252: Brent perto de US$ 100, novas minas, Trump ameaça atacar o resto do Irã",
-          "url": "https://www.iransitrep.com/",
-          "fonte": "Iran SITREP (agregador independente)",
-          "tipo": "imprensa"
-        },
-        {
-          "data": "2026-11-05",
-          "titulo": "Dia 251: sem acordo, sem prazo firme, mina atinge petroleiro, alerta perto de Yanbu",
-          "url": "https://www.iransitrep.com/",
-          "fonte": "Iran SITREP (agregador independente)",
-          "tipo": "imprensa"
-        },
-        {
-          "data": "2026-11-04",
-          "titulo": "Petróleo recua com a diplomacia e a esperança de reabrir Ormuz",
-          "url": "https://www.agbi.com/oil-and-gas/2026/11/oil-retreats-as-diplomacy-raises-hopes-for-hormuz-reopening/",
-          "fonte": "AGBI",
-          "tipo": "imprensa"
-        },
-        {
-          "data": "2026-11-04",
-          "titulo": "Resumo do dia 250: Ormuz com 3% do tráfego, prazo de 05/11",
-          "url": "https://www.iransitrep.com/",
-          "fonte": "Iran SITREP (agregador independente)",
-          "tipo": "imprensa"
-        },
-        {
-          "data": "2026-11-03",
-          "titulo": "Petróleo passa de US$ 105 após ataques dos EUA na ilha de Qeshm",
-          "url": "https://www.thenationalnews.com/business/energy/2026/11/03/oil-prices-cross-105-after-us-strikes-on-irans-qeshm-island/",
-          "fonte": "The National",
-          "tipo": "imprensa"
-        },
-        {
-          "data": "2026-11-03",
-          "titulo": "Cobertura ao vivo: ataques defensivos dos EUA e negociação",
-          "url": "https://cbsnews.com/live-updates/iran-war-us-trump-negotiations-midterms",
-          "fonte": "CBS News",
-          "tipo": "imprensa"
-        },
-        {
-          "data": "2026-03-11",
-          "titulo": "AIE aprova liberação recorde de 400 milhões de barris dos estoques de emergência",
-          "url": "https://www.iea.org/news/update-on-iea-collective-action-decision-of-11-march-2026",
-          "fonte": "Agência Internacional de Energia",
-          "tipo": "oficial"
-        },
-        {
-          "data": "2026-10-19",
-          "titulo": "Reserva estratégica de petróleo dos EUA cai para cerca de 283 milhões de barris, a menor desde 1982",
-          "url": "https://investinglive.com/commodities/us-strategic-oil-reserve-falls-to-lowest-since-1982-as-iran-war-release-drains-stocks/",
-          "fonte": "investingLive, com dados do Departamento de Energia via Reuters",
-          "tipo": "imprensa"
         }
       ]
     },
@@ -541,16 +543,37 @@
         "804"
       ],
       "desde": "2022-02-24",
-      "resumo": "Guerra em curso. O cessar-fogo local de 6 dias em Kherson (Oleshky) terminou em 01/11/2026, depois da retirada de cerca de 800 civis. Em 02/11, um ataque russo a um ponto de ajuda em Komyshuvakha (Zaporíjia) matou mais de 40 pessoas. A Rússia segue atacando a rede de energia (9 regiões atingidas na noite de 05/11). Em 05/11, Trump recebeu o enviado de Putin, Kirill Dmitriev, e disse que um acordo está muito perto, sem dar termos. Conversas de paz em Abu Dhabi seguem previstas para 10 e 11/11. Em 07/11, mísseis balísticos russos danificaram a Ponte Norte de Kiev; a Rússia levará o vice-chanceler Ryabkov às conversas de Abu Dhabi (10-11/11) e a Alemanha disse que não tem mais Patriot para enviar por ora. Em 09/11, drones ucranianos atingiram a refinaria Kirishi, a 2ª maior da Rússia, e a usina nuclear de Zaporíjia ficou cerca de 10 horas sem energia externa (AIEA). UE, OTAN, Alemanha, França e Reino Unido vão participar das conversas de Abu Dhabi (10-11/11).",
+      "resumo": "Guerra em curso. O cessar-fogo local de 6 dias em Kherson (Oleshky) terminou em 01/11/2026, depois da retirada de cerca de 800 civis. Em 02/11, um ataque russo a um ponto de ajuda em Komyshuvakha (Zaporíjia) matou mais de 40 pessoas. A Rússia segue atacando a rede de energia (9 regiões atingidas na noite de 05/11). Em 05/11, Trump recebeu o enviado de Putin, Kirill Dmitriev, e disse que um acordo está muito perto, sem dar termos. Conversas de paz em Abu Dhabi seguem previstas para 10 e 11/11. Em 07/11, mísseis balísticos russos danificaram a Ponte Norte de Kiev; a Rússia levará o vice-chanceler Ryabkov às conversas de Abu Dhabi (10-11/11) e a Alemanha disse que não tem mais Patriot para enviar por ora. Em 09/11, drones ucranianos atingiram a refinaria Kirishi, a 2ª maior da Rússia, e a usina nuclear de Zaporíjia ficou cerca de 10 horas sem energia externa (AIEA). UE, OTAN, Alemanha, França e Reino Unido vão participar das conversas de Abu Dhabi (10-11/11). Em 10/11 começaram dois dias de conversas entre EUA, Rússia e Ucrânia em Abu Dhabi; um funcionário dos EUA vê \"um pouco de flexibilidade\" sobre território. No mesmo dia, a Rússia atacou a energia em 8 regiões (cortes de emergência em Kiev) e drones ucranianos deixaram toda a Crimeia ocupada sem luz. Em 11/11, o 2º dia das conversas de Abu Dhabi terminou em menos de duas horas, sem avanço; drones ucranianos provocaram incêndio no porto de Ust-Luga, no Báltico, e dois mísseis de cruzeiro russos entraram no espaço aéreo da Moldávia durante um ataque à Ucrânia que deixou oito regiões com cortes de energia.",
       "impacto": "Pressão sobre energia na Europa e risco de incidentes no flanco leste da OTAN.",
       "eventos": [
+        {
+          "data": "2026-11-11",
+          "titulo": "Abu Dhabi termina sem avanço; drones atingem Ust-Luga; mísseis russos entram na Moldávia",
+          "url": "https://kyivindependent.com/",
+          "fonte": "Kyiv Independent, Bloomberg e Ukrinform",
+          "tipo": "imprensa",
+          "novo": true
+        },
+        {
+          "data": "2026-11-10",
+          "titulo": "Conversas de paz começam em Abu Dhabi com \"flexibilidade\" sobre território",
+          "url": "https://www.kyivpost.com/",
+          "fonte": "Kyiv Post e AP",
+          "tipo": "imprensa"
+        },
+        {
+          "data": "2026-11-10",
+          "titulo": "Crimeia inteira sem luz após drones; cortes de emergência em Kiev",
+          "url": "https://unn.ua",
+          "fonte": "UNN e Mezha",
+          "tipo": "imprensa"
+        },
         {
           "data": "2026-11-09",
           "titulo": "Drones atingem refinaria Kirishi; Zaporíjia 10 h sem energia externa; Europa em Abu Dhabi",
           "url": "https://kyivindependent.com/",
           "fonte": "Kyiv Independent",
-          "tipo": "imprensa",
-          "novo": true
+          "tipo": "imprensa"
         },
         {
           "data": "2026-11-07",
@@ -614,13 +637,6 @@
           "url": "https://www.kyivpost.com/post/88765",
           "fonte": "ISW via Kyiv Post",
           "tipo": "imprensa"
-        },
-        {
-          "data": "2026-10-30",
-          "titulo": "ISW: cessar-fogo local em Kherson e recusa de trégua ampla",
-          "url": "https://www.kyivpost.com/post/88722",
-          "fonte": "ISW via Kyiv Post",
-          "tipo": "imprensa"
         }
       ]
     },
@@ -633,9 +649,24 @@
         "428",
         "440"
       ],
-      "resumo": "Drones desviados entram no espaço aéreo de Estônia e Letônia; caças da OTAN derrubaram drones em maio e junho de 2026. Os Bálticos atribuem o desvio à guerra eletrônica russa.",
+      "resumo": "Drones desviados entram no espaço aéreo de Estônia e Letônia; caças da OTAN derrubaram drones em maio e junho de 2026. Os Bálticos atribuem o desvio à guerra eletrônica russa. Em 11/11, os países bálticos emitiram alertas de drone depois do ataque ucraniano ao porto russo de Ust-Luga, perto da fronteira da OTAN.",
       "impacto": "Risco de incidente direto entre OTAN e Rússia; é o principal motivo das campanhas de estoque na Europa.",
       "eventos": [
+        {
+          "data": "2026-11-11",
+          "titulo": "Alertas de drone nos Bálticos após ataque a Ust-Luga",
+          "url": "https://www.aljazeera.com",
+          "fonte": "Al Jazeera",
+          "tipo": "imprensa",
+          "novo": true
+        },
+        {
+          "data": "2026-11-10",
+          "titulo": "Alertas de drone na Romênia, Letônia e Estônia",
+          "url": "https://eng.lsm.lv",
+          "fonte": "LSM e Defence Industry Europe",
+          "tipo": "imprensa"
+        },
         {
           "data": "2026-11-03",
           "titulo": "Ameaças falsas de bomba em ao menos 7 voos na Europa; sem atribuição oficial",
@@ -667,9 +698,16 @@
         "156",
         "158"
       ],
-      "resumo": "Exercícios chineses ao redor de Taiwan cada vez mais frequentes em 2026; em dez/2025 a China simulou bloqueio dos portos. Nenhum exercício de novembro encontrado ainda. Em 06/11, o AEI e o ISW disseram que a China pode estar fazendo um exercício grande e não anunciado que simula cercar Taiwan, com três comandos militares; Taiwan não confirmou exercício formal.",
+      "resumo": "Exercícios chineses ao redor de Taiwan cada vez mais frequentes em 2026; em dez/2025 a China simulou bloqueio dos portos. Nenhum exercício de novembro encontrado ainda. Em 06/11, o AEI e o ISW disseram que a China pode estar fazendo um exercício grande e não anunciado que simula cercar Taiwan, com três comandos militares; Taiwan não confirmou exercício formal. Em 10/11, o ministro da Defesa de Taiwan confirmou exercícios chineses de \"negação de área\" no Pacífico com o porta-aviões Liaoning, e o Conselho de Segurança Nacional contou mais de 100 navios chineses na região, uma semana antes da cúpula da APEC em Shenzhen.",
       "impacto": "Risco para cadeias de eletrônicos e chips.",
       "eventos": [
+        {
+          "data": "2026-11-10",
+          "titulo": "Taiwan confirma exercício chinês de negação de área com o Liaoning e 100+ navios",
+          "url": "https://www.japantimes.co.jp/news/2026/11/10/asia-pacific/taiwan-china-area-denial-pacific/",
+          "fonte": "Japan Times/Reuters",
+          "tipo": "imprensa"
+        },
         {
           "data": "2026-11-04",
           "titulo": "Taiwan registra alta de atividade militar chinesa, um 'exercício silencioso'",
@@ -704,6 +742,13 @@
       "resumo": "A Coreia do Norte fez ao menos 11 lançamentos de mísseis balísticos em 2026 até agosto. Nenhum lançamento de novembro encontrado. Em 04/11, a Coreia do Norte fez o 4º lançamento em um mês: um novo sistema antiaéreo e um míssil de cruzeiro de longo alcance, em resposta a exercícios aéreos EUA-Coreia do Sul.",
       "impacto": "Regional; reforça a preparação do Japão.",
       "eventos": [
+        {
+          "data": "2026-11-10",
+          "titulo": "Coreia do Norte testa torpedo de alta velocidade",
+          "url": "https://www.koreaherald.com",
+          "fonte": "Korea Herald",
+          "tipo": "imprensa"
+        },
         {
           "data": "2026-11-05",
           "titulo": "Coreia do Norte testa novo míssil antiaéreo e míssil de cruzeiro",
@@ -810,7 +855,7 @@
       "desde": "2026-06",
       "pico": "nov/2026 a jan/2027",
       "indice": "Niño 3.4 em +2,1 °C (NOAA, 08/10/2026); setembro em +2,08 °C, o 2º maior desde 1950, atrás só de 1997 (Inmet). O Inpe dá 95% de chance de muito forte em out-nov-dez.",
-      "resumo": "El Niño confirmado em junho de 2026 e ainda se fortalecendo, com pico esperado em dezembro. O boletim oficial brasileiro de 29/10 prevê intensidade muito forte a partir de novembro, e a NOAA dá mais de 83% de chance de forte a muito forte até março de 2027. Sem boletim oficial novo desde então. Próxima atualização da NOAA: 12/11; próximo Painel El Niño: fim de novembro.",
+      "resumo": "El Niño confirmado em junho de 2026 e ainda se fortalecendo, com pico esperado em dezembro. O boletim oficial brasileiro de 29/10 prevê intensidade muito forte a partir de novembro, e a NOAA dá mais de 83% de chance de forte a muito forte até março de 2027. Sites especializados falam em índice semanal perto de +2,0 °C, perto do recorde de 1997-98, ainda sem boletim oficial novo. Próxima atualização da NOAA: 12/11; próximo Painel El Niño: fim de novembro.",
       "impacto": "Chuva acima da média no Sul (enchentes no RS e em SC, lavouras de trigo prejudicadas) e em partes do Sudeste e do Centro-Oeste; seca no Norte e em áreas do Nordeste, com risco de fogo; temperatura acima do normal em quase todo o país de novembro a janeiro. No Vale do Paraíba, chuva acima da média e risco maior de cheia no Paraíba do Sul em janeiro.",
       "eventos": [
         {
@@ -2028,13 +2073,13 @@
         "lon": -45.6,
         "lat": -23.0,
         "itens": [
-          "Alerta de temporais da Defesa Civil de SP na RMVale de 05 a 07/11 (com alerta laranja do Inmet em 05/11 para São José dos Campos, Jacareí e Taubaté) e aviso amarelo de tempestade do Inmet a partir de 08/11 (20 a 30 mm/h, vento de 40 a 60 km/h); sem estrago relatado até 07/11.",
+          "Quinta (12/11): alerta amarelo do Inmet (perigo potencial) de tempestade para toda a RMVale, com 20 a 30 mm por hora ou até 50 mm no dia, rajadas de até 60 km/h e possível granizo; risco baixo de queda de galhos, alagamento pontual e falta de energia. A Defesa Civil SP prevê chuva moderada a forte com raios a partir da manhã.",
           "Chuva acima da média em São Paulo de novembro a janeiro, com calor acima do normal.",
           "Risco maior de cheia na bacia do rio Paraíba do Sul, que cruza o Vale, sobretudo em janeiro.",
-          "Água: Cantareira com 51,2% em 31/10, o maior nível desde maio de 2025, mas ainda na faixa de atenção em novembro; reservatórios do sistema elétrico com 65,9% (23/10), na faixa normal.",
+          "Água: Cantareira com 53,6% em 09/11, subindo, mas ainda na faixa de atenção; reservatórios do sistema elétrico com 65,9% (23/10), na faixa normal.",
           "Risco de fogo baixo no Sudeste neste trimestre."
         ],
-        "fonte": "Painel El Niño nº 5 (29/10/2026); Inmet (05 e 07/11/2026); Defesa Civil de SP (04/11/2026); ANA e Sabesp via imprensa (31/10/2026)"
+        "fonte": "Painel El Niño nº 5 (29/10/2026); Inmet e Defesa Civil de SP via CBN Vale (11/11/2026); Sabesp via imprensa (09/11/2026)"
       }
     }
   ],
@@ -2044,7 +2089,7 @@
     "critico": "Ataque que interrompe serviço essencial (energia, água, saúde, alimento, transporte, telecomunicação ou pagamento)."
   },
   "regra_ciber": "Os ataques cibernéticos não mudam o nível do dia sozinhos. Sobem para AMARELO quando afetam energia, água, pagamento (PIX, bancos) ou abastecimento no Brasil, e para VERMELHO quando há ataque em larga escala a infraestrutura no Brasil ou serviço essencial fora do ar em SP ou no Vale do Paraíba.",
-  "ciber_resumo": "Semana com muitos ataques: o maior roubo de cripto já registrado (Binance, atribuído pelo FBI à Coreia do Norte), geladeiras de supermercados aquecidas à distância em pelo menos 11 países da Europa (a França atribuiu a 1ª onda ao IRGC iraniano em 09/11), o que levou CISA e FBI a pedirem proteção dos sistemas de refrigeração, e vazamentos na Amadeus e na DigiCert. Na Europa seguem os ataques híbridos atribuídos à Rússia, agora com espionagem zero-click em celulares. No Brasil, o Mercado Bitcoin suspendeu saques e um ataque tirou do ar sistemas da Saúde de Mato Grosso; nada atingiu bancos, PIX, energia ou água.",
+  "ciber_resumo": "Semana com muitos ataques: o maior roubo de cripto já registrado (Binance, atribuído pelo FBI à Coreia do Norte) e geladeiras de supermercados aquecidas à distância em pelo menos 11 países da Europa, com a 1ª onda atribuída pela França ao IRGC iraniano. Seguem ataques a governos na Europa (Polônia e Lituânia em 10/11) e um grupo diz ter invadido cinco bancos nos EUA. No Brasil, o Porto de Santos segue sem sistemas de TI desde 06/11, mas opera normalmente; nada atingiu bancos, PIX, energia ou água.",
   "ciber": [
     {
       "id": "geladeiras",
@@ -2068,24 +2113,37 @@
         "642",
         "826"
       ],
-      "resumo": "Invasores mudaram à distância a temperatura de geladeiras e freezers de supermercados e açougues, chegando a 50 °C na Suécia e 150 °C na Grécia. Uma 1ª onda em outubro atingiu centenas de lojas na França, Bélgica e Holanda; a 2ª, em 02/11, Suécia, Bélgica, Luxemburgo, Irlanda, Itália, Estônia e Grécia. A agência francesa ANSSI investiga desde meados de outubro e culpa módulos antigos de controle remoto (Danfoss e Copeland) ligados à internet com senha padrão. Em 02/11 a onda chegou também à saúde: um fornecedor de refrigeração do banco de sangue francês (EFS) foi invadido e a temperatura subiu em câmaras frias de 3 instalações. Segundo a EFS, os alarmes avisaram a tempo, as bolsas foram protegidas e a coleta e a distribuição de sangue não pararam. Em 04/11, Alemanha (4 supermercados), Romênia (6) e Reino Unido (pequenas empresas de carne, segundo o NCSC) confirmaram casos, somando pelo menos 11 países. A França confirmou ao menos 3 bancos de sangue atingidos. A Comissão Europeia disse que os casos não são isolados e prepara resposta conjunta. Ninguém reivindicou; a agência da Romênia chama o ataque de semiamador e não vê Estado por trás. Em 09/11, o Ministério das Relações Exteriores da França e o C4 (ANSSI, comando cibernético e inteligência) atribuíram a 1ª onda, de 11 e 12/10, à unidade Shahid Kaveh, ligada à Guarda Revolucionária do Irã (IRGC): cerca de 700 lojas atingidas, pelo menos 15 incêndios e equipamentos de pequenas hidrelétricas também atacados. A França vai convocar o embaixador iraniano e propor sanções da UE. A 2ª onda, de novembro, ainda não tem autor oficial.",
+      "resumo": "Invasores mudaram à distância a temperatura de geladeiras e freezers de supermercados e açougues, chegando a 50 °C na Suécia e 150 °C na Grécia. Uma 1ª onda em outubro atingiu centenas de lojas na França, Bélgica e Holanda; a 2ª, em 02/11, Suécia, Bélgica, Luxemburgo, Irlanda, Itália, Estônia e Grécia. A agência francesa ANSSI investiga desde meados de outubro e culpa módulos antigos de controle remoto (Danfoss e Copeland) ligados à internet com senha padrão. Em 02/11 a onda chegou também à saúde: um fornecedor de refrigeração do banco de sangue francês (EFS) foi invadido e a temperatura subiu em câmaras frias de 3 instalações. Segundo a EFS, os alarmes avisaram a tempo, as bolsas foram protegidas e a coleta e a distribuição de sangue não pararam. Em 04/11, Alemanha (4 supermercados), Romênia (6) e Reino Unido (pequenas empresas de carne, segundo o NCSC) confirmaram casos, somando pelo menos 11 países. A França confirmou ao menos 3 bancos de sangue atingidos. A Comissão Europeia disse que os casos não são isolados e prepara resposta conjunta. Ninguém reivindicou; a agência da Romênia chama o ataque de semiamador e não vê Estado por trás. Em 09/11, o Ministério das Relações Exteriores da França e o C4 (ANSSI, comando cibernético e inteligência) atribuíram a 1ª onda, de 11 e 12/10, à unidade Shahid Kaveh, ligada à Guarda Revolucionária do Irã (IRGC): cerca de 700 lojas atingidas, pelo menos 15 incêndios e equipamentos de pequenas hidrelétricas também atacados. A França vai convocar o embaixador iraniano e propor sanções da UE. A 2ª onda, de novembro, ainda não tem autor oficial. Em 10/11 a França convocou o embaixador iraniano, e o Irã negou a autoria.",
       "impacto": "Toneladas de comida estragada, prejuízo de dezenas de milhões de euros e incêndios. Agora atinge também a cadeia de frio da saúde, ainda sem dano a pacientes. Liga a guerra do Irã a ataques contra infraestrutura civil na Europa. Mostra que equipamento ligado à internet sem atualização vira alvo. Nenhum caso no Brasil.",
       "eventos": [
+        {
+          "data": "2026-11-11",
+          "titulo": "França não descarta nenhuma medida; Irã nega",
+          "url": "https://abcnews.com",
+          "fonte": "ABC News e imprensa europeia",
+          "tipo": "imprensa",
+          "novo": true
+        },
+        {
+          "data": "2026-11-10",
+          "titulo": "França convoca o embaixador do Irã; Irã nega",
+          "url": "https://therecord.media/france-blames-iran-for-fridge-cyberattacks",
+          "fonte": "The Record e BBC",
+          "tipo": "imprensa"
+        },
         {
           "data": "2026-11-09",
           "titulo": "França atribui ao IRGC iraniano a 1ª onda de ataques às geladeiras; 15 incêndios",
           "url": "https://www.bleepingcomputer.com/news/security/france-blames-iranian-hackers-for-supermarket-attacks-that-sparked-fires/",
           "fonte": "BleepingComputer (cita o governo francês e o CERT-FR)",
-          "tipo": "imprensa",
-          "novo": true
+          "tipo": "imprensa"
         },
         {
           "data": "2026-11-05",
           "titulo": "CISA e FBI pedem que infraestrutura crítica proteja sistemas de refrigeração",
           "url": "https://therecord.media/",
           "fonte": "The Record",
-          "tipo": "imprensa",
-          "novo": true
+          "tipo": "imprensa"
         },
         {
           "data": "2026-11-04",
@@ -2261,8 +2319,7 @@
           "titulo": "DigiCert informa vazamento de dados de clientes corporativos",
           "url": "https://therecord.media/",
           "fonte": "The Record",
-          "tipo": "imprensa",
-          "novo": true
+          "tipo": "imprensa"
         }
       ]
     },
@@ -2280,6 +2337,13 @@
       "resumo": "A corretora brasileira sofreu ataque em 02/11 e suspendeu saques e depósitos. Estimativas de US$ 38 a 49 milhões levados das carteiras da empresa. O MB diz que conteve o incidente e que não houve prejuízo a clientes nem vazamento de dados.",
       "impacto": "Afeta só quem tem cripto na corretora. Não há sinal de ataque a banco, PIX ou serviço essencial no Brasil.",
       "eventos": [
+        {
+          "data": "2026-11-09",
+          "titulo": "Mercado Bitcoin reabre o acesso; saques via Pix voltam na semana que vem",
+          "url": "https://valor.globo.com",
+          "fonte": "Valor Econômico",
+          "tipo": "imprensa"
+        },
         {
           "data": "2026-11-02",
           "titulo": "Mercado Bitcoin sofre ataque hacker estimado em R$ 217,7 milhões",
@@ -2397,8 +2461,7 @@
           "titulo": "Espionagem zero-click russa contra celulares; Bogotá investiga origem das ameaças de bomba",
           "url": "https://therecord.media/",
           "fonte": "The Record",
-          "tipo": "imprensa",
-          "novo": true
+          "tipo": "imprensa"
         },
         {
           "data": "2026-11-07",
@@ -2445,6 +2508,164 @@
           "url": "https://www.staradvertiser.com/2026/10/19/breaking-news/how-one-hacker-used-ai-agents-to-break-into-over-100-company-websites/",
           "fonte": "Reuters (via Honolulu Star-Advertiser)",
           "tipo": "imprensa"
+        }
+      ]
+    },
+    {
+      "id": "santos",
+      "nome": "Ataque hacker ao Porto de Santos",
+      "nivel": "grave",
+      "data": "2026-11-06",
+      "alvo": "Porto (site, sistemas internos e gates)",
+      "ator": "Desconhecido",
+      "atribuicao": "desconhecida",
+      "paises": [
+        "076"
+      ],
+      "resumo": "Desde 06/11 o site, sistemas internos e os gates públicos da Autoridade Portuária de Santos têm falhas; o problema voltou na madrugada de 07/11. A APS elevou a proteção do porto ao nível II e chamou o Serpro. Em 10/11 a APS confirmou que foi um ataque cibernético e adotou plano de contingência, e a Polícia Federal abriu inquérito. O ataque derrubou energia e internet da área administrativa, já restabelecidas na tarde de 10/11; os sistemas internos e o site seguem em recuperação gradual, sem prazo. A APS não sabe se dados foram acessados. Em 11/11, os servidores seguiam fora do ar: segundo o g1, uma queda de energia abriu caminho para o ataque, e a APS só confirmou o ataque ao achar dados criptografados ao tentar restaurar os sistemas. Uma força-tarefa com o Serpro trabalha na recuperação.",
+      "impacto": "Operações normais, segundo a APS: navios e acessos terrestres mantidos, e a papelada segue pelo sistema Porto Sem Papel, que não foi atingido. Agentes portuários usaram celulares para manter o porto funcionando. É o maior porto do Brasil, por isso vale acompanhar; sem efeito em combustível ou abastecimento até agora.",
+      "eventos": [
+        {
+          "data": "2026-11-11",
+          "titulo": "Servidores seguem fora do ar; queda de energia ajudou o ataque",
+          "url": "https://convergenciadigital.com.br",
+          "fonte": "ConvergênciaDigital e g1",
+          "tipo": "imprensa",
+          "novo": true
+        },
+        {
+          "data": "2026-11-10",
+          "titulo": "APS confirma ataque hacker; PF abre inquérito; operações mantidas",
+          "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/porto-de-santos-sistemas-seguem-afetados-apos-ataque-cibernetico",
+          "fonte": "Agência Brasil, g1, Estadão e CNN Brasil",
+          "tipo": "imprensa"
+        },
+        {
+          "data": "2026-11-10",
+          "titulo": "Porto de Santos eleva proteção ao nível II após falha nos sistemas",
+          "url": "https://bpmoney.com.br/inovacao/tecnologia/porto-de-santos-nivel-protecao-ataque-cibernetico/",
+          "fonte": "BPMoney e A Tribuna",
+          "tipo": "imprensa"
+        }
+      ]
+    },
+    {
+      "id": "turla-cereal",
+      "nome": "Espionagem russa em e-mail de governos (malware Cereal)",
+      "nivel": "monitorar",
+      "data": "2026-11-10",
+      "alvo": "Servidores de e-mail Exchange de governo",
+      "ator": "Turla, ligado ao FSB, segundo a ESET",
+      "atribuicao": "imprensa",
+      "paises": [
+        "642",
+        "398"
+      ],
+      "resumo": "A ESET revelou um malware novo, o Cereal, escondido em servidores Exchange de órgãos de governo da Romênia e do Cazaquistão. Na Romênia, ele foi ajustado para coletar a correspondência com a OTAN e a UE. Não se sabe quanto foi roubado.",
+      "impacto": "Espionagem, sem dano a serviço essencial. Nenhum efeito no Brasil.",
+      "eventos": [
+        {
+          "data": "2026-11-10",
+          "titulo": "Hackers russos invadem e-mail de governos para roubar correspondência da OTAN e da UE",
+          "url": "https://therecord.media/russia-hackers-espionage-romania-kazakhstan",
+          "fonte": "The Record",
+          "tipo": "imprensa"
+        }
+      ]
+    },
+    {
+      "id": "vanderbilt",
+      "nome": "Ransomware na Universidade Vanderbilt",
+      "nivel": "grave",
+      "data": "2026-11-09",
+      "alvo": "Universidade (aulas e sistemas do campus)",
+      "ator": "Grupo BYOD (reivindicação, não confirmada)",
+      "atribuicao": "desconhecida",
+      "paises": [
+        "840"
+      ],
+      "resumo": "Um ataque de ransomware afetou dispositivos e sistemas do campus da Universidade Vanderbilt, nos EUA, e atrapalhou aulas. Um grupo diz ter roubado dados, o que não foi confirmado.",
+      "impacto": "Serviço fora do ar numa universidade, sem dano a serviço essencial. Nenhum efeito no Brasil.",
+      "eventos": [
+        {
+          "data": "2026-11-09",
+          "titulo": "Incidente cibernético afeta dispositivos e sistemas da Vanderbilt",
+          "url": "https://therecord.media/vanderbilt-cyberattack-ransomware-alert",
+          "fonte": "The Record",
+          "tipo": "imprensa"
+        }
+      ]
+    },
+    {
+      "id": "polonia-gov",
+      "nome": "Plataforma de serviços do governo da Polônia",
+      "nivel": "grave",
+      "data": "2026-11-10",
+      "alvo": "Serviços públicos online",
+      "ator": "Desconhecido",
+      "atribuicao": "desconhecida",
+      "paises": [
+        "616",
+        "440"
+      ],
+      "resumo": "Um ciberataque atingiu em 10/11 a plataforma de serviços online do governo da Polônia; o governo diz que conteve o ataque e trabalha para restabelecer o acesso completo. A Lituânia também relatou ataque a sistemas do governo.",
+      "impacto": "Serviço público fora do ar por algumas horas, sem dano a serviço essencial. Nenhum efeito no Brasil.",
+      "eventos": [
+        {
+          "data": "2026-11-10",
+          "titulo": "Ciberataque atinge a plataforma de serviços do governo polonês",
+          "url": "https://tvpworld.com",
+          "fonte": "TVP World e Hromadske",
+          "tipo": "imprensa",
+          "novo": true
+        }
+      ]
+    },
+    {
+      "id": "bancos-eua",
+      "nome": "Ransomware em bancos dos EUA",
+      "nivel": "grave",
+      "data": "2026-11-11",
+      "alvo": "5 bancos e 1 cooperativa de crédito",
+      "ator": "Grupo de ransomware",
+      "atribuicao": "imprensa",
+      "paises": [
+        "840"
+      ],
+      "resumo": "Um grupo de ransomware diz ter invadido cinco bancos e uma cooperativa de crédito nos EUA; dois confirmaram o vazamento.",
+      "impacto": "Vazamento de dados, sem interrupção de pagamentos informada. Nenhum efeito no Brasil.",
+      "eventos": [
+        {
+          "data": "2026-11-11",
+          "titulo": "Grupo diz ter invadido 5 bancos e 1 cooperativa; 2 confirmam",
+          "url": "https://www.americanbanker.com",
+          "fonte": "American Banker",
+          "tipo": "imprensa",
+          "novo": true
+        }
+      ]
+    },
+    {
+      "id": "pc-sp",
+      "nome": "Suposta invasão na Polícia Civil de SP",
+      "nivel": "monitorar",
+      "data": "2026-11-10",
+      "alvo": "Credenciais de sistemas da Polícia Civil",
+      "ator": "Desconhecido",
+      "atribuicao": "desconhecida",
+      "paises": [
+        "076"
+      ],
+      "resumo": "A Polícia Civil de São Paulo investiga uma suposta invasão e a venda de 22 mil credenciais. Não há confirmação do ataque.",
+      "impacto": "Nenhum serviço essencial afetado até agora.",
+      "eventos": [
+        {
+          "data": "2026-11-10",
+          "titulo": "Polícia Civil de SP investiga suposta venda de 22 mil credenciais",
+          "url": "https://itforum.com.br",
+          "fonte": "IT Forum e TecMundo",
+          "tipo": "imprensa",
+          "novo": true
         }
       ]
     }

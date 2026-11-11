@@ -279,6 +279,17 @@ section, #placard { scroll-margin-top: 64px; }
 .crit p { margin: 0; font-size: 14px; }
 .notes { margin-top: 20px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 32px; }
 .notes p { margin: 0; max-width: 62ch; }
+.boatos { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 12px; }
+.boato { background: var(--panel); border: 1px solid var(--line); padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.boato .topo { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.boato .selo { font-family: var(--font-mono); font-size: 12px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; padding: 4px 8px; background: var(--vermelho); color: var(--on-sinal); }
+.boato.fora-de-contexto .selo, .boato.enganoso .selo { background: var(--amarelo); color: var(--on-amarelo); }
+.boato .d { font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+.boato .diz { margin: 0; font-size: 15px; font-weight: 600; text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--vermelho) 70%, transparent); text-decoration-thickness: 2px; }
+.boato .verdade { margin: 0; font-size: 14px; }
+.boato .verdade b { font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-right: 6px; }
+.boato .fts { margin: 0; font-size: 12.5px; color: var(--muted); }
+.boato .fts a { color: inherit; }
 .quiet { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
 .quiet li { padding-left: 16px; position: relative; max-width: 80ch; }
 .quiet li::before { content: ""; position: absolute; left: 0; top: .7em; width: 7px; height: 7px; background: var(--verde); }
@@ -323,6 +334,7 @@ footer { padding-block: 28px 48px; border-top: 1px solid var(--line); color: var
       <li><a href="#locais">Locais</a></li>
       <li><a href="#guerra">Guerra</a></li>
       <li><a href="#ciber">Ciber</a></li>
+      <li><a href="#boatos">Boatos</a></li>
       <li><a href="#clima">El Niño</a></li>
       <li><a href="#brasil" data-br>Brasil</a></li>
       <li><a href="#graficos">Números</a></li>
@@ -425,6 +437,15 @@ footer { padding-block: 28px 48px; border-top: 1px solid var(--line); color: var
     <div class="cards" id="ciber-cards"></div>
     <div class="method" id="crit-k" style="margin-top:16px"></div>
     <p class="rule" id="ciber-rule">—</p>
+  </section>
+
+  <section id="boatos" aria-labelledby="h-boatos">
+    <div class="sec-head">
+      <h2 id="h-boatos">Boatos desmentidos</h2>
+      <p>O que circula nas redes sobre alerta, apagão, tornado ou estoque e já foi desmentido. Os mais recentes estão aqui; a lista completa fica no <a href="https://boatos.coderstudio.club/" target="_blank" rel="noopener">Monitor de Boatos ↗</a>.</p>
+    </div>
+    <div class="boatos" id="boatos-lista"></div>
+    <p class="rule"><a href="https://boatos.coderstudio.club/" target="_blank" rel="noopener">Ver todos os boatos desmentidos ↗</a></p>
   </section>
 
   <section id="clima" aria-labelledby="h-clima">
@@ -1330,6 +1351,28 @@ footer { padding-block: 28px 48px; border-top: 1px solid var(--line); color: var
     });
     const quiet = document.getElementById("quiet");
     data.sem_novidade.forEach(t => quiet.append(el("li", null, t)));
+
+    // Boatos desmentidos: vêm do Monitor de Boatos (fonte única), os 4 mais novos.
+    const bl = document.getElementById("boatos-lista");
+    const VERED = { "falso": "Falso", "fora de contexto": "Fora de contexto", "enganoso": "Enganoso" };
+    fetch("https://boatos.coderstudio.club/data.json").then(r => r.json()).then(db => {
+      const boatos = (db.boatos || []).slice().sort((a, b) => b.data.localeCompare(a.data)).slice(0, 4);
+      if (!boatos.length) bl.append(el("p", "rule", "Nenhum boato relevante desmentido nos últimos 30 dias."));
+      boatos.forEach(b => {
+        const art = el("article", "boato " + b.veredito.replace(/ /g, "-"));
+        const topo = el("div", "topo");
+        topo.append(el("span", "selo", VERED[b.veredito] || b.veredito), el("span", "d", `${fmt(b.data)} · ${b.onde || ""}`));
+        const diz = el("p", "diz", b.diz);
+        const vd = el("p", "verdade"); vd.append(el("b", null, "O que é verdade"), b.verdade);
+        const ft = el("p", "fts"); ft.append("Desmentido por: ");
+        b.eventos.forEach((e, i) => {
+          if (i) ft.append(" · ");
+          const a = el("a", null, e.fonte); a.href = e.url; a.target = "_blank"; a.rel = "noopener";
+          a.setAttribute("aria-label", e.fonte + ": " + e.titulo); ft.append(a);
+        });
+        art.append(topo, diz, vd, ft); bl.append(art);
+      });
+    }).catch(() => { bl.append(el("p", "rule", "A lista de boatos não carregou agora. Veja direto no Monitor de Boatos.")); });
     const critG = document.getElementById("crit-g");
     ["latente", "elevada", "ativa"].forEach(l => {
       const c = el("div", "crit " + l); c.append(pill(l), el("p", null, (data.criterios_guerra || {})[l] || "")); critG.append(c);
